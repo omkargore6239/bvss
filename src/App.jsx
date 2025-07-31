@@ -22,7 +22,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <div className="min-h-screen">
+      <div className="min-h-screen relative">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/muhs" element={<Muhs />} />
           <Route path="/contact" element={<Contact />} />
 
-          {/* Add separate course routes here */}
+          {/* Course subpages */}
           <Route path="/subpages/courses/bams" element={<BAMS />} />
           <Route path="/subpages/courses/PostGraduate" element={<PostGraduate />} />
           <Route path="/subpages/courses/DiplomaPrograms" element={<DiplomaPrograms />} />
@@ -41,6 +41,20 @@ const App = () => {
 
           <Route path="/inquiry" element={<InquiryForm />} />
         </Routes>
+
+        {/* Floating WhatsApp icon */}
+        <a
+          href="https://wa.me/919999999999" // Replace with your WhatsApp number
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50"
+        >
+          <img
+            src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"
+            alt="WhatsApp"
+            className="w-12 h-12 hover:scale-110 transition-transform duration-200"
+          />
+        </a>
       </div>
       <Footer />
     </Router>

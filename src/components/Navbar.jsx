@@ -80,19 +80,12 @@ const Navbar = () => {
                 </Link>
                 <button className="ml-1 focus:outline-none group-hover:text-blue-600">
                   <span className="transition-all duration-300">
-                    <span className="group-hover:hidden">+</span>
-                    <span className="hidden group-hover:inline">-</span>
+                    {/* <span className="group-hover:hidden">+</span> */}
+                    {/* <span className="hidden group-hover:inline">-</span> */}
                   </span>
                 </button>
               </div>
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md border border-gray-200 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
-                <div className="py-2">
-                  <Link to="../subpages/courses/bams" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">BAMS</Link>
-                  <Link to="../subpages/courses/PostGraduate" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Post Graduate</Link>
-                  <Link to="../subpages/courses/DiplomaPrograms" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Diploma Programs</Link>
-                  <Link to="../subpages/courses/CertificateCourses" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">Certificate Courses</Link>
-                </div>
-              </div>
+              
             </div>
 
             {/* Academics Dropdown */}

@@ -57,7 +57,7 @@ const Courses = () => {
       category: "pediatric",
       duration: "12 Months",
       seats: 20,
-      fees: "₹1,50,000",
+      //s: "₹1,50,000",
       description: "Comprehensive fellowship program focusing on pediatric healthcare management, child development assessment, vaccination protocols, and specialized pediatric care procedures.",
       eligibility: "MBBS/BAMS/BDS/BHMS",
       schedule: "Full-time Program with Clinical Rotations",
@@ -93,7 +93,7 @@ const Courses = () => {
       category: "general",
       duration: "12 Months",
       seats: 25,
-      fees: "₹1,50,000",
+      //s: "₹1,50,000",
       description: "Advanced training in general medicine practices, healthcare administration, patient management systems, and comprehensive clinical decision-making processes.",
       eligibility: "MBBS/BAMS/BDS/BHMS",
       schedule: "Full-time Program with Hospital Rotations",
@@ -129,7 +129,7 @@ const Courses = () => {
       category: "womens",
       duration: "12 Months",
       seats: 20,
-      fees: "₹1,50,000",
+      //s: "₹1,50,000",
       description: "Specialized program covering women's health, maternal care, gynecological practices, family planning, and comprehensive reproductive health management.",
       eligibility: "MBBS/BAMS/BDS/BHMS",
       schedule: "Full-time Program with Maternity Ward Rotations",
@@ -165,7 +165,7 @@ const Courses = () => {
       category: "dermatology",
       duration: "12 Months",
       seats: 15,
-      fees: "₹1,50,000",
+      //s: "₹1,50,000",
       description: "In-depth study of Ayurvedic approaches to dermatological conditions, traditional skin care therapies, and integration with modern dermatological practices.",
       eligibility: "BAMS/MBBS",
       schedule: "Full-time Program with Dermatology Clinic Rotations",
@@ -201,7 +201,7 @@ const Courses = () => {
       category: "surgery",
       duration: "6 Months",
       seats: 10,
-      fees: "₹1,00,000",
+      //s: "₹1,00,000",
       description: "Specialized fellowship in traditional Ayurvedic Kharsutra (medicated thread) therapy for ano-rectal disorders and minimally invasive surgical procedures.",
       eligibility: "BAMS/MS(Ayurveda)",
       schedule: "Full-time Intensive Program with Surgical Training",
@@ -526,10 +526,7 @@ const Courses = () => {
                         </span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="flex items-center">
-                          <FaRupeeSign className="w-4 h-4 mr-2" style={{ color: program.color }} />
-                          <span style={{ color: govColors.text.secondary }}>Fees:</span>
-                        </span>
+                       
                         <span style={{ color: program.color }} className="font-bold">
                           {program.fees}
                         </span>
