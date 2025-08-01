@@ -40,36 +40,6 @@ const Footer = () => {
             margin: 2rem 0;
           }
         }
-
-        .full-width-section {
-          margin-left: -1rem;
-          margin-right: -1rem;
-          padding-left: 1rem;
-          padding-right: 1rem;
-        }
-
-        @media (min-width: 640px) {
-          .full-width-section {
-            margin-left: -1.5rem;
-            margin-right: -1.5rem;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-          }
-        }
-
-        @media (min-width: 1024px) {
-          .full-width-section {
-            margin-left: -2rem;
-            margin-right: -2rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
-          }
-        }
-
-        .zero-bottom-gap {
-          margin-bottom: 0;
-          padding-bottom: 0;
-        }
       `}</style>
 
       <div className="container mx-auto max-w-7xl">
@@ -125,6 +95,68 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Contact Information */}
+          <div>
+            <h3 className="text-base md:text-lg xl:text-xl font-bold mb-4 relative pb-2">
+              CONTACT INFO
+              <span 
+                className="absolute bottom-0 left-0 w-12 md:w-16 h-1"
+                style={{ backgroundColor: govColors.primary.orange }}
+              ></span>
+            </h3>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <span 
+                  className="text-sm md:text-base mr-2 md:mr-3 mt-1 transition-colors duration-300"
+                  style={{ color: govColors.primary.orange }}
+                >
+                  <FaMapMarkerAlt />
+                </span>
+                <div>
+                  <p className="text-xs sm:text-sm leading-relaxed">
+                    Bharat Vikas Shikshan Sanstha<br />
+                    Chinchwad, Pune 411019<br />
+                    Maharashtra, India
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-center">
+                <span 
+                  className="text-sm md:text-base mr-2 md:mr-3 transition-colors duration-300"
+                  style={{ color: govColors.primary.orange }}
+                >
+                  <FaPhone />
+                </span>
+                <div>
+                  <a 
+                    href="tel:+919876543210" 
+                    className="text-xs sm:text-sm hover:underline transition-all duration-300"
+                    style={{ color: govColors.primary.white }}
+                  >
+                    +91 98765 43210
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-center">
+                <span 
+                  className="text-sm md:text-base mr-2 md:mr-3 transition-colors duration-300"
+                  style={{ color: govColors.primary.orange }}
+                >
+                  <FaEnvelope />
+                </span>
+                <div>
+                  <a 
+                    href="mailto:info@bvss.edu.in" 
+                    className="text-xs sm:text-sm hover:underline transition-all duration-300"
+                    style={{ color: govColors.primary.white }}
+                  >
+                    info@bvss.edu.in
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           {/* Quick Links */}
           <div>
             <h3 className="text-base md:text-lg xl:text-xl font-bold mb-4 relative pb-2">
@@ -161,73 +193,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-
-        {/* Contact Information - Full Width Section */}
-        <div 
-          className="full-width-section border-t py-6 mb-6"
-          style={{ 
-            borderColor: govColors.secondary.lightBlue,
-            backgroundColor: `${govColors.primary.blue}ee`
-          }}
-        >
-          <h3 className="text-lg md:text-xl xl:text-2xl font-bold mb-6 text-center relative pb-3">
-            CONTACT INFORMATION
-            <span 
-              className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 md:w-32 h-1"
-              style={{ backgroundColor: govColors.primary.orange }}
-            ></span>
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="flex flex-col items-center text-center">
-              <div 
-                className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4"
-                style={{ backgroundColor: govColors.primary.orange }}
-              >
-                <FaMapMarkerAlt className="text-lg md:text-2xl text-white" />
-              </div>
-              <h4 className="font-bold text-sm md:text-base mb-2">ADDRESS</h4>
-              <p className="text-xs sm:text-sm leading-relaxed opacity-90">
-                Bharat Vikas Shikshan Sanstha<br />
-                Chinchwad, Pune 411019<br />
-                Maharashtra, India
-              </p>
-            </div>
-            
-            <div className="flex flex-col items-center text-center">
-              <div 
-                className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4"
-                style={{ backgroundColor: govColors.primary.orange }}
-              >
-                <FaPhone className="text-lg md:text-2xl text-white" />
-              </div>
-              <h4 className="font-bold text-sm md:text-base mb-2">PHONE</h4>
-              <a 
-                href="tel:+919876543210" 
-                className="text-xs sm:text-sm hover:underline transition-all duration-300 opacity-90 hover:opacity-100"
-                style={{ color: govColors.primary.white }}
-              >
-                +91 98765 43210
-              </a>
-            </div>
-            
-            <div className="flex flex-col items-center text-center">
-              <div 
-                className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4"
-                style={{ backgroundColor: govColors.primary.orange }}
-              >
-                <FaEnvelope className="text-lg md:text-2xl text-white" />
-              </div>
-              <h4 className="font-bold text-sm md:text-base mb-2">EMAIL</h4>
-              <a 
-                href="mailto:info@bvss.edu.in" 
-                className="text-xs sm:text-sm hover:underline transition-all duration-300 opacity-90 hover:opacity-100"
-                style={{ color: govColors.primary.white }}
-              >
-                info@bvss.edu.in
-              </a>
-            </div>
           </div>
         </div>
 
@@ -310,23 +275,19 @@ const Footer = () => {
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Government Website Style Disclaimer - Full Width with Zero Bottom Gap */}
-      <div 
-        className="full-width-section mt-4 py-4 text-center zero-bottom-gap"
-        style={{ 
-          backgroundColor: govColors.secondary.darkBlue,
-          borderTop: `2px solid ${govColors.primary.orange}`,
-          minHeight: '60px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <p className="opacity-75 text-xs md:text-sm max-w-4xl mx-auto leading-relaxed">
-          This is an official website of Bharat Vikas Shikshan Sanstha, Government Recognized Educational Institution
-        </p>
+        {/* Government Website Style Disclaimer - Compact */}
+        <div 
+          className="mt-4 py-3 text-center"
+          style={{ 
+            backgroundColor: govColors.secondary.darkBlue,
+            borderTop: `2px solid ${govColors.primary.orange}`
+          }}
+        >
+          <p className="opacity-75 text-xs">
+            This is an official website of Bharat Vikas Shikshan Sanstha, Government Recognized Educational Institution
+          </p>
+        </div>
       </div>
     </footer>
   );
