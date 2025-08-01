@@ -20,28 +20,6 @@ import InquiryForm from '../components/InquiryForm';
 import { Link } from 'react-router-dom';
 import { govColors } from '../utils/colors';
 
-// -- ANNEXURE ARRAYS --
-const annexures = [
-  { name: 'ANNEXURE - A', file: '/BVG Imges/images/axe/ANNEXURE - A.pdf' },
-  { name: 'ANNEXURE - B', file: '/BVG Imges/images/axe/ANNEXURE - B.pdf' },
-  { name: 'ANNEXURE - C', file: '/BVG Imges/images/axe/ANNEXURE - C.pdf' },
-  { name: 'ANNEXURE - D', file: '/BVG Imges/images/axe/ANNEXURE - D.pdf' },
-  { name: 'ANNEXURE - E', file: '/BVG Imges/images/axe/ANNEXURE - E.pdf' },
-  // { name: 'ANNEXURE - F', file: '/BVG Imges/images/axe/ANNEXURE - F.pdf' },
-  { name: 'ANNEXURE - G', file: '/BVG Imges/images/axe/ANNEXURE - G.pdf' },
-  
-  { name: 'ANNEXURE - A', file: '/BVG Imges/images/axe/BVSS-Entrance-Form (1).pdf' },
-  { name: 'ANNEXURE - B', file: '/BVG Imges/images/axe/BVSS-Entrance-Form.pdf' },
-  { name: 'ANNEXURE - C', file: '/BVG Imges/images/axe/Massage Therapist Training Course.pdf' },
-  { name: 'ANNEXURE - D', file: '/BVG Imges/images/axe/Uttar Basti Training Program.pdf' },
-];
-const annexureImages = [
-  { name: 'निरोगी मनुष्यासाठी दिनचर्या', file: '/BVG Imges/images/axe/निरोगी मनुष्यासाठी दिनचर्या.jpg' },
-  { name: 'पोटावरिल चरबी', file: '/BVG Imges/images/axe/पोटावरील चरबी.jpg' },
-  { name: 'मासिक पाळीची आहार', file: '/BVG Imges/images/axe/मासिक पाळीत आहार.jpg' },
-  { name: 'कौशल्य वटी', file: '/BVG Imges/images/axe/व्योषादी वटी.png' }
-];
-
 const Academics = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -68,6 +46,7 @@ const Academics = () => {
     { number: '95%', label: 'Completion Rate', icon: FaAward },
     { number: '50+', label: 'Partner Hospitals', icon: FaGlobe }
   ];
+
   const programs = {
     fellowship: [
       {
@@ -112,6 +91,7 @@ const Academics = () => {
       }
     ]
   };
+
   const departments = [
     {
       name: 'Child Health Care Management',
@@ -154,6 +134,7 @@ const Academics = () => {
       icon: MdLocalHospital
     }
   ];
+
   const facilities = [
     {
       title: 'Clinical Training Centers',
@@ -338,57 +319,7 @@ const Academics = () => {
         </div>
       </section>
 
-      {/* ---- ANNEXURE SECTION ---- */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: govColors.background.secondary }}>
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: govColors.primary.blue }}>
-              Annexure Documents & Images
-            </h2>
-            <div className="w-20 md:w-24 h-1 mx-auto mb-6" style={{ backgroundColor: govColors.primary.orange }}></div>
-          </div>
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold mb-3" style={{ color: govColors.primary.orange }}>
-              PDF Annexures
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              {annexures.map((annex, idx) => (
-                <div key={idx} className="flex items-center justify-between bg-white rounded-lg shadow p-3">
-                  <span className="font-medium" style={{ color: govColors.text.primary }}>{annex.name}</span>
-                  <a
-                    href={annex.file}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-1 px-3 rounded gov-button-secondary border-0"
-                    style={{ color: govColors.primary.blue, backgroundColor: govColors.primary.white }}
-                  >
-                    View
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-3" style={{ color: govColors.primary.orange }}>
-              Annexure Images
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              {annexureImages.map((img, idx) => (
-                <div key={idx} className="flex flex-col items-center bg-white rounded-lg shadow p-3">
-                  <img
-                    src={img.file}
-                    alt={img.name}
-                    className="mb-2 rounded"
-                    style={{ width: "100%", height: "120px", objectFit: "cover" }}
-                  />
-                  <span className="font-medium text-center" style={{ color: govColors.text.primary }}>{img.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ---- END ANNEXURE SECTION ---- */}
+      {/* -- Removed Annexure Section here -- */}
 
       <div className="section-divider"></div>
 
@@ -610,7 +541,8 @@ const Academics = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}>
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
               Ready to Advance Your Medical Career?
             </h2>

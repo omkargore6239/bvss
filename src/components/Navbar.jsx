@@ -8,13 +8,11 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
 
-  // Measure header height and setup scroll listener
   useEffect(() => {
     const headerElement = document.getElementById('top-header');
     if (headerElement) {
       setHeaderHeight(headerElement.offsetHeight);
     }
-
     const handleScroll = () => {
       if (window.scrollY > headerHeight) {
         setScrolled(true);
@@ -22,7 +20,6 @@ const Navbar = () => {
         setScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -71,26 +68,22 @@ const Navbar = () => {
             </div>
 
             <Link to="/" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">HOME</Link>
-
             <Link to="/about" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">ABOUT</Link>
 
-            {/* Courses Dropdown */}
+            {/* Courses Dropdown (non-functional dropdown as in your code) */}
             <div className="relative group">
               <div className="flex items-center">
                 <Link to="/courses" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">
                   COURSES
                 </Link>
+                {/* Placeholder for dropdown arrow */}
                 <button className="ml-1 focus:outline-none group-hover:text-blue-600">
-                  <span className="transition-all duration-300">
-                    {/* <span className="group-hover:hidden">+</span> */}
-                    {/* <span className="hidden group-hover:inline">-</span> */}
-                  </span>
+                  <span className="transition-all duration-300"></span>
                 </button>
               </div>
-              
             </div>
 
-            {/* Academics Dropdown */}
+            {/* Academics */}
             <div className="relative group">
               <div className="flex items-center">
                 <Link to="/academics" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">
@@ -99,7 +92,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Achievements Dropdown */}
+            {/* Achievements */}
             <div className="relative group">
               <div className="flex items-center">
                 <Link to="/achievements" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">
@@ -108,6 +101,7 @@ const Navbar = () => {
               </div>
             </div>
 
+            {/* MUHS MANDATE DROPDOWN */}
             <div className="relative group">
               <div className="flex items-center">
                 <Link to="/muhs" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">
@@ -120,24 +114,21 @@ const Navbar = () => {
                   </span>
                 </button>
               </div>
+              {/* DROPDOWN LIST */}
               <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md border border-gray-200 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
                 <div className="py-2">
-                  <Link to="/blog" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">BLOG</Link>
-                  </div>
+                  <Link to="/blog" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+                    BLOG
+                  </Link>
+                  {/* --- New Document Link --- */}
+                  <Link to="/document" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+                    DOCUMENT
+                  </Link>
+                </div>
               </div>
             </div>
 
-            {/* MUHS Mandate */}
-            {/* <div className="relative group">
-              <div className="flex items-center">
-                <Link to="/muhs" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">
-                  MUHS MANDATE
-                </Link>
-              </div>
-            </div> */}
-
             <Link to="/contact" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">CONTACT</Link>
-
             <a
               href="/BVSS-Entrance-Form.pdf"
               download
@@ -155,7 +146,6 @@ const Navbar = () => {
                 <img src="/logo.png" alt="Logo" className="h-20 w-24" />
               </Link>
             </div>
-
             {/* Hamburger Menu Button */}
             <button
               onClick={toggleMenu}
@@ -174,19 +164,16 @@ const Navbar = () => {
           <div className="md:hidden mt-2">
             <div className="flex flex-col space-y-2 px-2 pt-2 pb-3">
               <Link to="/" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium" onClick={handleDropdownItemClick}>HOME</Link>
-
               <Link to="/about" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium" onClick={handleDropdownItemClick}>ABOUT</Link>
 
               {/* Mobile Courses Dropdown */}
               <div>
                 <div className="flex items-center justify-between">
                   <Link 
-                    to="/courses" 
+                    to="/courses"
                     className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium"
                     onClick={handleDropdownItemClick}
-                  >
-                    COURSES
-                  </Link>
+                  >COURSES</Link>
                   <button
                     onClick={() => toggleDropdown('mobile-courses')}
                     className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium"
@@ -208,12 +195,10 @@ const Navbar = () => {
               <div>
                 <div className="flex items-center justify-between">
                   <Link 
-                    to="/academics" 
+                    to="/academics"
                     className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium"
                     onClick={handleDropdownItemClick}
-                  >
-                    ACADEMICS
-                  </Link>
+                  >ACADEMICS</Link>
                 </div>
               </div>
 
@@ -221,32 +206,41 @@ const Navbar = () => {
               <div>
                 <div className="flex items-center justify-between">
                   <Link 
-                    to="/achievements" 
+                    to="/achievements"
                     className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium"
                     onClick={handleDropdownItemClick}
-                  >
-                    ACHIEVEMENTS & EVENTS
-                  </Link>
+                  >ACHIEVEMENTS & EVENTS</Link>
                 </div>
               </div>
 
+              {/* Mobile Blog Link */}
               <Link to="/blog" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium" onClick={handleDropdownItemClick}>BLOG</Link>
 
               {/* Mobile MUHS Mandate */}
               <div>
                 <div className="flex items-center justify-between">
                   <Link 
-                    to="/muhs" 
+                    to="/muhs"
                     className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium"
                     onClick={handleDropdownItemClick}
+                  >MUHS MANDATE</Link>
+                  <button
+                    onClick={() => toggleDropdown('mobile-muhs')}
+                    className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium"
                   >
-                    MUHS MANDATE
-                  </Link>
+                    {activeDropdown === 'mobile-muhs' ? '-' : '+'}
+                  </button>
                 </div>
+                {activeDropdown === 'mobile-muhs' && (
+                  <div className="pl-6 mt-1 space-y-1">
+                    <Link to="/blog" className="block px-3 py-1 text-gray-800 hover:text-blue-600" onClick={handleDropdownItemClick}>BLOG</Link>
+                    {/* --- New Document Link --- */}
+                    <Link to="/document" className="block px-3 py-1 text-gray-800 hover:text-blue-600" onClick={handleDropdownItemClick}>DOCUMENT</Link>
+                  </div>
+                )}
               </div>
 
               <Link to="/contact" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium" onClick={handleDropdownItemClick}>CONTACT</Link>
-              
               <a
                 href="/BVSS-Entrance-Form.pdf"
                 download
@@ -264,7 +258,6 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-
       {/* Spacer div to prevent content from hiding under fixed navbar when it's active */}
       {scrolled && <div className="h-20"></div>}
     </div>

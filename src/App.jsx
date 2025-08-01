@@ -17,6 +17,8 @@ import BAMS from './subpages/courses/BAMS';
 import PostGraduate from './subpages/courses/PostGraduate';
 import DiplomaPrograms from './subpages/courses/DiplomaPrograms';
 import CertificateCourses from './subpages/courses/CertificateCourses';
+// Import Document page
+import Document from './pages/Document';
 
 const App = () => {
   return (
@@ -32,6 +34,7 @@ const App = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/muhs" element={<Muhs />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/document" element={<Document />} />
 
           {/* Course subpages */}
           <Route path="/subpages/courses/bams" element={<BAMS />} />
