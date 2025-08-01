@@ -42,7 +42,7 @@ const CustomNextArrow = (props) => {
   const { className, style, onClick } = props;
   return (
     <div
-      className={`${className} !absolute !top-1/2 !right-6 !transform !-translate-y-1/2 text-white text-2xl cursor-pointer z-20 hover:scale-110 transition-all duration-300`}
+      className={`${className} !absolute !top-1/2 !right-4 sm:!right-6 !transform !-translate-y-1/2 text-white text-xl sm:text-2xl cursor-pointer z-20 hover:scale-110 transition-all duration-300`}
       style={{
         ...style,
         display: 'flex',
@@ -50,8 +50,12 @@ const CustomNextArrow = (props) => {
         justifyContent: 'center',
         background: govColors.primary.blue,
         borderRadius: '50%',
-        width: '50px',
-        height: '50px',
+        width: '40px',
+        height: '40px',
+        [`@media (min-width: 640px)`]: {
+          width: '50px',
+          height: '50px'
+        },
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
         border: `2px solid ${govColors.primary.white}`
       }}
@@ -66,7 +70,7 @@ const CustomPrevArrow = (props) => {
   const { className, style, onClick } = props;
   return (
     <div
-      className={`${className} !absolute !top-1/2 !left-6 !transform !-translate-y-1/2 text-white text-2xl cursor-pointer z-20 hover:scale-110 transition-all duration-300`}
+      className={`${className} !absolute !top-1/2 !left-4 sm:!left-6 !transform !-translate-y-1/2 text-white text-xl sm:text-2xl cursor-pointer z-20 hover:scale-110 transition-all duration-300`}
       style={{
         ...style,
         display: 'flex',
@@ -74,8 +78,12 @@ const CustomPrevArrow = (props) => {
         justifyContent: 'center',
         background: govColors.primary.blue,
         borderRadius: '50%',
-        width: '50px',
-        height: '50px',
+        width: '40px',
+        height: '40px',
+        [`@media (min-width: 640px)`]: {
+          width: '50px',
+          height: '50px'
+        },
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
         border: `2px solid ${govColors.primary.white}`
       }}
@@ -144,11 +152,11 @@ const Home = () => {
     dots: true,
     dotsClass: "slick-dots custom-dots",
     infinite: true,
-    speed: 1500, // Reduced speed
+    speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 7000, // Reduced speed
+    autoplaySpeed: 7000,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
     pauseOnHover: true,
@@ -157,7 +165,7 @@ const Home = () => {
         breakpoint: 768,
         settings: {
           arrows: false,
-          autoplaySpeed: 6000 // Reduced speed for mobile
+          autoplaySpeed: 6000
         }
       }
     ]
@@ -171,7 +179,7 @@ const Home = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
     responsive: [
       {
@@ -215,13 +223,48 @@ const Home = () => {
   return (
     <div className="w-full min-h-screen flex flex-col" style={{ backgroundColor: govColors.background.primary }}>
       <style>{`
+        /* Fixed announcement scroll - starts immediately with no delay */
         .announcement-scroll {
-          animation: scroll-left 60s linear infinite; /* Reduced speed */
+          animation: scroll-left 80s linear infinite;
+          animation-delay: 0s !important;
+          animation-play-state: running !important;
+        }
+
+        .announcement-scroll:hover {
+          animation-play-state: paused;
         }
 
         @keyframes scroll-left {
           0% { transform: translateX(100%); }
           100% { transform: translateX(-100%); }
+        }
+
+        /* Announcement text - always white and visible */
+        .announcement-text {
+          color: white !important;
+          opacity: 1 !important;
+          font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+          .announcement-scroll {
+            animation: scroll-left 60s linear infinite;
+            animation-delay: 0s !important;
+          }
+          
+          .announcement-text {
+            font-size: 0.8rem !important;
+            color: white !important;
+            opacity: 1 !important;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .announcement-text {
+            font-size: 0.9rem !important;
+            color: white !important;
+            opacity: 1 !important;
+          }
         }
 
         .slick-dots {
@@ -243,18 +286,69 @@ const Home = () => {
           transform: scale(1.2);
         }
 
+        /* Fixed review section styles */
         .review-dots {
-          bottom: -40px;
+          bottom: -50px !important;
+          text-align: center;
         }
 
         .review-dots li button:before {
           color: ${govColors.primary.blue};
-          font-size: 10px;
+          font-size: 12px;
+          opacity: 0.7;
+        }
+
+        .review-dots li.slick-active button:before {
+          color: ${govColors.primary.orange};
+          opacity: 1;
+        }
+
+        .review-slider {
+          margin-bottom: 60px;
+        }
+
+        .review-card {
+          height: 100%;
+          display: flex !important;
+          flex-direction: column;
+          margin: 0 10px;
+        }
+
+        .review-card-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+          .review-card {
+            margin: 0 5px;
+          }
+          
+          .review-card-content {
+            padding: 1rem;
+          }
+          
+          .review-dots {
+            bottom: -40px !important;
+          }
+          
+          .review-slider {
+            margin-bottom: 50px;
+          }
         }
 
         .flip-card {
           perspective: 1000px;
-          height: 400px;
+          height: 350px;
+        }
+
+        @media (min-width: 768px) {
+          .flip-card {
+            height: 400px;
+          }
         }
 
         .flip-card-inner {
@@ -289,26 +383,34 @@ const Home = () => {
           transform: rotateY(180deg);
           display: flex;
           flex-direction: column;
-          padding: 1.5rem;
+          padding: 1rem;
           color: ${govColors.text.primary};
         }
 
+        @media (min-width: 768px) {
+          .flip-card-back {
+            padding: 1.5rem;
+          }
+        }
+
         .hero-slider {
-          height: 500px;
+          height: 250px;
           width: 100%;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 640px) {
           .hero-slider {
-            height: 300px;
-          }
-          .hero-slider .slick-slide img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
+            height: 350px;
           }
         }
 
+        @media (min-width: 768px) {
+          .hero-slider {
+            height: 500px;
+          }
+        }
+
+        /* Fixed brochure button - responsive for all screens */
         .brochure-download {
           position: fixed;
           right: 0;
@@ -323,40 +425,41 @@ const Home = () => {
           box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
           writing-mode: vertical-lr;
           text-orientation: mixed;
-          padding: 16px 12px;
+          padding: 12px 8px;
           transition: all 0.3s ease;
           font-weight: bold;
-          font-size: 12px;
+          font-size: 10px;
+          cursor: pointer;
         }
 
         .brochure-download:hover {
           background: ${govColors.secondary.darkOrange};
-          transform: translateY(-50%) translateX(-5px);
+          transform: translateY(-50%) translateX(-3px);
           box-shadow: -8px 0 20px rgba(0, 0, 0, 0.25);
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
           .brochure-download {
-            writing-mode: initial;
-            text-orientation: initial;
-            top: auto;
-            bottom: 20px;
-            right: 20px;
-            border-radius: 8px;
-            padding: 12px 16px;
-            font-size: 10px;
-            transform: none;
+            padding: 16px 12px;
+            font-size: 12px;
           }
           
           .brochure-download:hover {
-            transform: scale(1.05);
+            transform: translateY(-50%) translateX(-5px);
           }
         }
 
         .section-divider {
-          height: 4px;
+          height: 3px;
           background: linear-gradient(to right, ${govColors.primary.blue}, ${govColors.primary.orange}, ${govColors.primary.blue});
-          margin: 3rem 0;
+          margin: 2rem 0;
+        }
+
+        @media (min-width: 768px) {
+          .section-divider {
+            height: 4px;
+            margin: 3rem 0;
+          }
         }
 
         .gov-button {
@@ -384,27 +487,39 @@ const Home = () => {
           transform: translateY(-2px);
         }
 
-        /* Mobile responsive adjustments */
-        @media (max-width: 768px) {
-          .text-4xl {
-            font-size: 2rem;
+        /* Mobile responsive grid adjustments */
+        @media (max-width: 640px) {
+          .mobile-responsive-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
           }
-          .text-5xl {
-            font-size: 2.5rem;
+          
+          .mobile-responsive-text {
+            font-size: 0.875rem;
           }
-          .px-10 {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
+          
+          .mobile-responsive-heading {
+            font-size: 1.5rem;
           }
-          .py-4 {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-          }
-          .announcement-scroll {
-            animation: scroll-left 40s linear infinite;
+          
+          .mobile-responsive-padding {
+            padding: 1rem;
           }
         }
 
+        @media (min-width: 641px) and (max-width: 768px) {
+          .tablet-responsive-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        @media (min-width: 769px) {
+          .desktop-responsive-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+          }
+        }
+
+        /* Announcement banner responsiveness */
         .announcement-banner {
           position: relative;
           z-index: 30;
@@ -415,17 +530,22 @@ const Home = () => {
           z-index: 10;
         }
 
-        /* Fixed announcement positioning */
         .announcement-content {
           display: flex;
           align-items: center;
-          min-height: 48px;
+          min-height: 40px;
+        }
+
+        @media (min-width: 768px) {
+          .announcement-content {
+            min-height: 48px;
+          }
         }
 
         .announcement-label {
           flex-shrink: 0;
           min-width: fit-content;
-          padding: 12px 16px;
+          padding: 8px 12px;
           background-color: ${govColors.primary.blue};
           color: ${govColors.primary.white};
           border-right: 2px solid ${govColors.primary.white};
@@ -434,27 +554,41 @@ const Home = () => {
           height: 100%;
         }
 
+        @media (min-width: 768px) {
+          .announcement-label {
+            padding: 12px 16px;
+          }
+        }
+
         .announcement-text-container {
           flex: 1;
           overflow: hidden;
-          height: 48px;
+          height: 40px;
           display: flex;
           align-items: center;
         }
 
-        @media (max-width: 768px) {
-          .announcement-label {
-            padding: 8px 12px;
-            min-height: 40px;
-          }
-          
+        @media (min-width: 768px) {
           .announcement-text-container {
-            height: 40px;
+            height: 48px;
+          }
+        }
+
+        /* Stats cards mobile optimization */
+        .stats-card-mobile {
+          padding: 1rem;
+          text-align: center;
+          border-radius: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+          .stats-card-mobile {
+            padding: 1.5rem;
           }
         }
       `}</style>
 
-      {/* Brochure Download - Fixed to extreme right - Only "BROCHURE" */}
+      {/* Brochure Download - Fixed to extreme right and middle */}
       <div className="brochure-download">
         <a 
           href="/brochure/BVSS-Fellowship-Brochure-2025.pdf" 
@@ -465,7 +599,7 @@ const Home = () => {
         </a>
       </div>
 
-      {/* Fixed Announcement Banner - Improved positioning */}
+      {/* Fixed Announcement Banner - Immediate start and proper white text */}
       <motion.div 
         className="overflow-hidden relative announcement-banner"
         style={{ 
@@ -478,13 +612,16 @@ const Home = () => {
       >
         <div className="announcement-content">
           <div className="announcement-label">
-            <MdAnnouncement className="text-lg md:text-xl mr-2 animate-pulse" />
+            <MdAnnouncement className="text-base md:text-xl mr-1 md:mr-2 animate-pulse" />
             <span className="font-bold text-xs md:text-sm whitespace-nowrap">ANNOUNCEMENTS</span>
           </div>
           <div className="announcement-text-container">
             <div className="announcement-scroll whitespace-nowrap">
               {announcements.map((announcement, index) => (
-                <span key={index} className="mx-4 md:mx-8 text-xs md:text-sm font-medium">
+                <span 
+                  key={index} 
+                  className="mx-2 sm:mx-4 md:mx-8 font-medium announcement-text"
+                >
                   {announcement}
                 </span>
               ))}
@@ -493,7 +630,7 @@ const Home = () => {
         </div>
       </motion.div>
 
-      {/* Hero Slider Section */}
+      {/* Hero Slider Section - Mobile Responsive */}
       <motion.div
         className="w-full hero-slider relative overflow-hidden slider-container"
         initial="hidden"
@@ -514,29 +651,29 @@ const Home = () => {
       </motion.div>
 
       {/* Main Content Section */}
-      <div className="flex-grow py-8 md:py-16 px-4">
+      <div className="flex-grow py-6 md:py-16 px-3 sm:px-4">
         <div className="max-w-7xl mx-auto">
           
-          {/* Welcome Section */}
+          {/* Welcome Section - Mobile Responsive */}
           <motion.div
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-10 md:mb-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <h1 
-              className="text-3xl md:text-5xl font-bold mb-6"
+              className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 md:mb-6 mobile-responsive-heading"
               style={{ color: govColors.primary.blue }}
             >
               Bharat Vikas Shikshan Sanstha
             </h1>
             <div 
-              className="w-24 md:w-32 h-1 mx-auto mb-6"
+              className="w-16 sm:w-24 md:w-32 h-1 mx-auto mb-4 md:mb-6"
               style={{ backgroundColor: govColors.primary.orange }}
             ></div>
             <p 
-              className="text-base md:text-lg max-w-4xl mx-auto leading-relaxed px-4"
+              className="text-sm sm:text-base md:text-lg max-w-4xl mx-auto leading-relaxed px-2 sm:px-4 mobile-responsive-text"
               style={{ color: govColors.text.secondary }}
             >
               Government Recognized Institution for Fellowship Training in Healthcare Management. 
@@ -548,7 +685,7 @@ const Home = () => {
 
           {/* Quick Stats Section - Mobile Responsive */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16"
+            className="grid mobile-responsive-grid md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-10 md:mb-16"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -563,7 +700,7 @@ const Home = () => {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="p-4 md:p-6 rounded-lg text-center border-2 hover:shadow-lg transition-all duration-300"
+                className="stats-card-mobile rounded-lg text-center border-2 hover:shadow-lg transition-all duration-300"
                 style={{ 
                   backgroundColor: govColors.background.primary,
                   borderColor: index % 2 === 0 ? govColors.primary.blue : govColors.primary.orange,
@@ -571,11 +708,11 @@ const Home = () => {
                 }}
               >
                 <stat.icon 
-                  className="text-2xl md:text-3xl mx-auto mb-2 md:mb-3" 
+                  className="text-2xl sm:text-2xl md:text-3xl mx-auto mb-2 md:mb-3" 
                   style={{ color: index % 2 === 0 ? govColors.primary.blue : govColors.primary.orange }}
                 />
-                <h3 className="text-xl md:text-3xl font-bold mb-1">{stat.number}</h3>
-                <p className="text-xs md:text-base">{stat.label}</p>
+                <h3 className="text-lg sm:text-xl md:text-3xl font-bold mb-1">{stat.number}</h3>
+                <p className="text-xs sm:text-sm md:text-base">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -584,40 +721,40 @@ const Home = () => {
 
           {/* About Section - Mobile Responsive */}
           <motion.div
-            className="mb-12 md:mb-16"
+            className="mb-10 md:mb-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div className="px-4 lg:px-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+              <div className="px-2 sm:px-4 lg:px-0">
                 <h2 
-                  className="text-2xl md:text-4xl font-bold mb-4 md:mb-6"
+                  className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 md:mb-6"
                   style={{ color: govColors.primary.blue }}
                 >
                   About Our Institution
                 </h2>
                 <div 
-                  className="w-16 md:w-20 h-1 mb-4 md:mb-6"
+                  className="w-12 sm:w-16 md:w-20 h-1 mb-3 md:mb-6"
                   style={{ backgroundColor: govColors.primary.orange }}
                 ></div>
                 <p 
-                  className="text-base md:text-lg mb-4 md:mb-6 leading-relaxed"
+                  className="text-sm sm:text-base md:text-lg mb-3 md:mb-6 leading-relaxed"
                   style={{ color: govColors.text.secondary }}
                 >
                   Bharat Vikas Shikshan Sanstha stands as a beacon of excellence in fellowship training for healthcare professionals. 
                   As the educational arm of BVG India Ltd, we are committed to nurturing the next generation of specialized healthcare experts.
                 </p>
                 <p 
-                  className="text-base md:text-lg mb-6 md:mb-8 leading-relaxed"
+                  className="text-sm sm:text-base md:text-lg mb-4 md:mb-8 leading-relaxed"
                   style={{ color: govColors.text.secondary }}
                 >
                   Our institution combines traditional medical wisdom with modern healthcare practices, providing students 
                   with a comprehensive understanding of specialized healthcare management.
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                   {[
                     { icon: FaHandsHelping, text: "Government Approved" },
                     { icon: FaLeaf, text: "Healthcare Excellence" },
@@ -626,18 +763,18 @@ const Home = () => {
                   ].map((feature, index) => (
                     <div 
                       key={index} 
-                      className="flex items-center p-3 rounded-lg border"
+                      className="flex items-center p-2 sm:p-3 rounded-lg border"
                       style={{ 
                         backgroundColor: govColors.background.secondary,
                         borderColor: govColors.border.light
                       }}
                     >
                       <feature.icon 
-                        className="text-lg md:text-xl mr-3" 
+                        className="text-base sm:text-lg md:text-xl mr-2 sm:mr-3" 
                         style={{ color: govColors.primary.orange }}
                       />
                       <span 
-                        className="font-medium text-sm md:text-base"
+                        className="font-medium text-xs sm:text-sm md:text-base"
                         style={{ color: govColors.text.primary }}
                       >
                         {feature.text}
@@ -647,27 +784,27 @@ const Home = () => {
                 </div>
               </div>
               
-              <div className="relative px-4 lg:px-0">
+              <div className="relative px-2 sm:px-4 lg:px-0">
                 <img 
                   src="/BVG Imges/images/slider/banner-3.jpg" 
                   alt="BVSS Fellowship Training Campus" 
-                  className="rounded-lg shadow-lg w-full h-64 md:h-96 object-cover border-4"
+                  className="rounded-lg shadow-lg w-full h-48 sm:h-64 md:h-96 object-cover border-4"
                   style={{ borderColor: govColors.primary.blue }}
                 />
                 <div 
-                  className="absolute -bottom-4 -left-4 p-4 md:p-6 rounded-lg shadow-lg border-2"
+                  className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 p-3 sm:p-4 md:p-6 rounded-lg shadow-lg border-2"
                   style={{ 
                     backgroundColor: govColors.primary.white,
                     borderColor: govColors.primary.orange
                   }}
                 >
                   <h4 
-                    className="text-xl md:text-2xl font-bold"
+                    className="text-lg sm:text-xl md:text-2xl font-bold"
                     style={{ color: govColors.primary.orange }}
                   >
                     27+
                   </h4>
-                  <p className="text-sm" style={{ color: govColors.text.secondary }}>Years of Excellence</p>
+                  <p className="text-xs sm:text-sm" style={{ color: govColors.text.secondary }}>Years of Excellence</p>
                 </div>
               </div>
             </div>
@@ -675,9 +812,9 @@ const Home = () => {
 
           <div className="section-divider"></div>
 
-          {/* Reviews Section - English Only */}
+          {/* Reviews Section - Fixed and Properly Aligned */}
           <motion.div
-            className="mb-12 md:mb-16"
+            className="mb-10 md:mb-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -685,89 +822,95 @@ const Home = () => {
           >
             <div className="text-center mb-8 md:mb-12">
               <h2 
-                className="text-2xl md:text-4xl font-bold mb-4 md:mb-6"
+                className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 md:mb-6"
                 style={{ color: govColors.primary.blue }}
               >
                 Student <span style={{ color: govColors.primary.orange }}>Reviews</span>
               </h2>
               <div 
-                className="w-20 md:w-24 h-1 mx-auto mb-6 md:mb-8"
+                className="w-16 sm:w-20 md:w-24 h-1 mx-auto mb-4 md:mb-8"
                 style={{ backgroundColor: govColors.primary.orange }}
               ></div>
               <p 
-                className="text-base md:text-lg max-w-3xl mx-auto px-4"
+                className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto px-2 sm:px-4"
                 style={{ color: govColors.text.secondary }}
               >
                 Real experiences from our fellowship graduates
               </p>
             </div>
 
-            <Slider {...reviewSliderSettings} className="review-slider">
-              {reviews.map((review, index) => (
-                <div key={index} className="px-3">
-                  <motion.div
-                    className="bg-white rounded-lg shadow-lg p-6 border-l-4 h-auto"
-                    style={{ borderLeftColor: govColors.primary.orange }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center">
-                        {[...Array(review.rating)].map((_, i) => (
-                          <FaStar 
-                            key={i} 
-                            className="text-yellow-400 text-sm"
-                          />
-                        ))}
-                      </div>
-                      <FaQuoteLeft 
-                        className="text-2xl opacity-20"
-                        style={{ color: govColors.primary.blue }}
-                      />
-                    </div>
-
-                    <div className="mb-4">
-                      <p 
-                        className="text-sm mb-3 leading-relaxed"
-                        style={{ color: govColors.text.secondary }}
-                      >
-                        {review.text}
-                      </p>
-                    </div>
-
-                    <div 
-                      className="pt-4 border-t"
-                      style={{ borderColor: govColors.border.light }}
+            <div className="review-slider">
+              <Slider {...reviewSliderSettings}>
+                {reviews.map((review, index) => (
+                  <div key={index} className="px-2">
+                    <motion.div
+                      className="review-card bg-white rounded-lg shadow-lg border-l-4"
+                      style={{ borderLeftColor: govColors.primary.orange }}
+                      whileHover={{ y: -5 }}
                     >
-                      <h4 
-                        className="font-bold text-base mb-1"
-                        style={{ color: govColors.primary.blue }}
-                      >
-                        {review.name}
-                      </h4>
-                      <p 
-                        className="text-xs font-medium mb-2"
-                        style={{ color: govColors.primary.orange }}
-                      >
-                        {review.course}
-                      </p>
-                      <p 
-                        className="text-xs"
-                        style={{ color: govColors.text.secondary }}
-                      >
-                        {review.location}
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
-            </Slider>
+                      <div className="review-card-content">
+                        <div>
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center">
+                              {[...Array(review.rating)].map((_, i) => (
+                                <FaStar 
+                                  key={i} 
+                                  className="text-yellow-400 text-sm"
+                                />
+                              ))}
+                            </div>
+                            <FaQuoteLeft 
+                              className="text-2xl opacity-20"
+                              style={{ color: govColors.primary.blue }}
+                            />
+                          </div>
+
+                          <div className="mb-4">
+                            <p 
+                              className="text-sm leading-relaxed"
+                              style={{ color: govColors.text.secondary }}
+                            >
+                              {review.text}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div 
+                          className="pt-4 border-t mt-auto"
+                          style={{ borderColor: govColors.border.light }}
+                        >
+                          <h4 
+                            className="font-bold text-base mb-1"
+                            style={{ color: govColors.primary.blue }}
+                          >
+                            {review.name}
+                          </h4>
+                          <p 
+                            className="text-xs font-medium mb-2"
+                            style={{ color: govColors.primary.orange }}
+                          >
+                            {review.course}
+                          </p>
+                          <p 
+                            className="text-xs"
+                            style={{ color: govColors.text.secondary }}
+                          >
+                            {review.location}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
           </motion.div>
 
           <div className="section-divider"></div>
 
           {/* Our Strength Section - Mobile Responsive */}
           <motion.div
-            className="mb-12 md:mb-16 p-6 md:p-10 rounded-lg shadow-lg border-2"
+            className="mb-10 md:mb-16 mobile-responsive-padding md:p-10 rounded-lg shadow-lg border-2"
             style={{ 
               backgroundColor: govColors.background.secondary,
               borderColor: govColors.border.medium
@@ -778,12 +921,12 @@ const Home = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 
-              className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center"
+              className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-8 text-center"
               style={{ color: govColors.primary.blue }}
             >
               Our Institutional Strengths
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
               {[
                 {
                   icon: FaAward,
@@ -818,7 +961,7 @@ const Home = () => {
               ].map((strength, index) => (
                 <motion.div
                   key={index}
-                  className="p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border"
+                  className="p-3 sm:p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border"
                   style={{ 
                     backgroundColor: govColors.primary.white,
                     borderColor: govColors.border.light
@@ -826,17 +969,17 @@ const Home = () => {
                   whileHover={{ y: -5 }}
                 >
                   <strength.icon 
-                    className="text-2xl md:text-3xl mb-3 md:mb-4" 
+                    className="text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3 md:mb-4" 
                     style={{ color: govColors.primary.orange }}
                   />
                   <h3 
-                    className="text-lg md:text-xl font-bold mb-2 md:mb-3"
+                    className="text-base sm:text-lg md:text-xl font-bold mb-2 md:mb-3"
                     style={{ color: govColors.text.primary }}
                   >
                     {strength.title}
                   </h3>
                   <p 
-                    className="text-sm md:text-base leading-relaxed"
+                    className="text-xs sm:text-sm md:text-base leading-relaxed"
                     style={{ color: govColors.text.secondary }}
                   >
                     {strength.description}
@@ -850,26 +993,26 @@ const Home = () => {
 
           {/* Medical Plantation Section - Mobile Responsive */}
           <div 
-            className="p-6 md:p-10 rounded-lg shadow-lg mb-12 md:mb-16 border-2"
+            className="mobile-responsive-padding md:p-10 rounded-lg shadow-lg mb-10 md:mb-16 border-2"
             style={{ 
               backgroundColor: govColors.background.accent,
               borderColor: govColors.primary.blue
             }}
           >
             <h2 
-              className="text-2xl md:text-3xl font-bold mb-4 text-center"
+              className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 text-center"
               style={{ color: govColors.primary.blue }}
             >
               Medicinal Plant Cultivation
             </h2>
             <p 
-              className="text-base md:text-lg text-center mb-8 md:mb-12 max-w-3xl mx-auto px-4"
+              className="text-sm sm:text-base md:text-lg text-center mb-6 sm:mb-8 md:mb-12 max-w-3xl mx-auto px-2 sm:px-4"
               style={{ color: govColors.text.secondary }}
             >
               Our medicinal plant garden provides hands-on learning experience for students in fellowship programs, 
               especially those specializing in Ayurvedic treatments and dermatology.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {[
                 {
                   name: "Aloe Vera",
@@ -904,15 +1047,15 @@ const Home = () => {
                           alt={plant.name}
                         />
                         <div 
-                          className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white"
+                          className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 text-white"
                           style={{ 
                             background: `linear-gradient(transparent, ${govColors.primary.blue}dd)`
                           }}
                         >
-                          <h3 className="text-lg md:text-xl font-bold mb-2">{plant.name}</h3>
-                          <p className="text-sm opacity-90 mb-3">{plant.sanskrit}</p>
-                          <div className="flex items-center text-sm">
-                            <FaInfoCircle className="mr-2" />
+                          <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">{plant.name}</h3>
+                          <p className="text-xs sm:text-sm opacity-90 mb-2 sm:mb-3">{plant.sanskrit}</p>
+                          <div className="flex items-center text-xs sm:text-sm">
+                            <FaInfoCircle className="mr-1 sm:mr-2" />
                             <span>Click to explore fellowship applications</span>
                           </div>
                         </div>
@@ -921,27 +1064,27 @@ const Home = () => {
 
                     <div className="flip-card-back">
                       <h3 
-                        className="text-lg md:text-xl font-bold mb-2"
+                        className="text-base sm:text-lg md:text-xl font-bold mb-2"
                         style={{ color: govColors.primary.blue }}
                       >
                         {plant.name}
                       </h3>
                       <p 
-                        className="text-sm mb-4"
+                        className="text-xs sm:text-sm mb-3 sm:mb-4"
                         style={{ color: govColors.primary.orange }}
                       >
                         {plant.sanskrit}
                       </p>
                       <div className="flex-grow overflow-auto">
                         <p 
-                          className="text-sm leading-relaxed whitespace-pre-line"
+                          className="text-xs sm:text-sm leading-relaxed whitespace-pre-line"
                           style={{ color: govColors.text.secondary }}
                         >
                           {plant.description}
                         </p>
                       </div>
                       <div 
-                        className="pt-4 mt-auto border-t"
+                        className="pt-3 sm:pt-4 mt-auto border-t"
                         style={{ borderColor: govColors.border.light }}
                       >
                         <div className="flex justify-between items-center">
@@ -952,7 +1095,7 @@ const Home = () => {
                             Tap to flip back
                           </span>
                           <button 
-                            className="px-3 py-2 rounded text-xs font-medium gov-button"
+                            className="px-2 sm:px-3 py-1 sm:py-2 rounded text-xs font-medium gov-button"
                           >
                             Learn More
                           </button>
@@ -967,7 +1110,7 @@ const Home = () => {
 
           {/* Call to Action - Mobile Responsive */}
           <motion.div
-            className="p-8 md:p-12 rounded-lg shadow-lg text-center border-2"
+            className="p-4 sm:p-8 md:p-12 rounded-lg shadow-lg text-center border-2"
             style={{ 
               backgroundColor: govColors.primary.blue,
               borderColor: govColors.primary.orange,
@@ -978,15 +1121,15 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 sm:mb-4 md:mb-6">
               Begin Your Healthcare Journey
             </h2>
-            <p className="text-base md:text-lg mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed px-4">
+            <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed px-2 sm:px-4">
               Join our distinguished community of healthcare professionals and embark on a transformative 
               educational experience in specialized fellowship programs.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-10">
               {[
                 { icon: FaCalendarAlt, title: "Admissions Open", desc: "Apply for 2025 fellowship batch" },
                 { icon: FaAward, title: "Scholarship Available", desc: "Merit-based programs" },
@@ -994,7 +1137,7 @@ const Home = () => {
               ].map((item, index) => (
                 <div 
                   key={index} 
-                  className="p-4 md:p-6 rounded-lg border-2"
+                  className="p-3 sm:p-4 md:p-6 rounded-lg border-2"
                   style={{ 
                     backgroundColor: govColors.primary.white,
                     borderColor: govColors.primary.orange,
@@ -1002,12 +1145,12 @@ const Home = () => {
                   }}
                 >
                   <item.icon 
-                    className="text-2xl md:text-3xl mb-3 mx-auto"
+                    className="text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3 mx-auto"
                     style={{ color: govColors.primary.orange }}
                   />
-                  <h4 className="font-bold mb-2 text-sm md:text-base">{item.title}</h4>
+                  <h4 className="font-bold mb-1 sm:mb-2 text-xs sm:text-sm md:text-base">{item.title}</h4>
                   <p 
-                    className="text-xs md:text-sm"
+                    className="text-xs sm:text-xs md:text-sm"
                     style={{ color: govColors.text.secondary }}
                   >
                     {item.desc}
@@ -1016,16 +1159,16 @@ const Home = () => {
               ))}
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link to="/admissions">
-                <button className="px-6 md:px-10 py-3 md:py-4 font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gov-button text-sm md:text-base">
-                  <MdSchool className="mr-2" />
+                <button className="w-full sm:w-auto px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-4 font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gov-button text-xs sm:text-sm md:text-base">
+                  <MdSchool className="mr-1 sm:mr-2" />
                   Apply Now
                 </button>
               </Link>
               <Link to="/contact">
-                <button className="px-6 md:px-10 py-3 md:py-4 font-bold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gov-button-secondary text-sm md:text-base">
-                  <FaCalendarAlt className="mr-2" />
+                <button className="w-full sm:w-auto px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-4 font-bold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gov-button-secondary text-xs sm:text-sm md:text-base">
+                  <FaCalendarAlt className="mr-1 sm:mr-2" />
                   Schedule Visit
                 </button>
               </Link>
@@ -1036,7 +1179,7 @@ const Home = () => {
 
       {/* Inquiry Form */}
       <div 
-        className="py-8 md:py-16"
+        className="py-6 sm:py-8 md:py-16"
         style={{ backgroundColor: govColors.background.secondary }}
       >
         <InquiryForm />

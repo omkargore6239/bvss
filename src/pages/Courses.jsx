@@ -57,7 +57,6 @@ const Courses = () => {
       category: "pediatric",
       duration: "12 Months",
       seats: 20,
-      //s: "₹1,50,000",
       description: "Comprehensive fellowship program focusing on pediatric healthcare management, child development assessment, vaccination protocols, and specialized pediatric care procedures.",
       eligibility: "MBBS/BAMS/BDS/BHMS",
       schedule: "Full-time Program with Clinical Rotations",
@@ -93,7 +92,6 @@ const Courses = () => {
       category: "general",
       duration: "12 Months",
       seats: 25,
-      //s: "₹1,50,000",
       description: "Advanced training in general medicine practices, healthcare administration, patient management systems, and comprehensive clinical decision-making processes.",
       eligibility: "MBBS/BAMS/BDS/BHMS",
       schedule: "Full-time Program with Hospital Rotations",
@@ -129,7 +127,6 @@ const Courses = () => {
       category: "womens",
       duration: "12 Months",
       seats: 20,
-      //s: "₹1,50,000",
       description: "Specialized program covering women's health, maternal care, gynecological practices, family planning, and comprehensive reproductive health management.",
       eligibility: "MBBS/BAMS/BDS/BHMS",
       schedule: "Full-time Program with Maternity Ward Rotations",
@@ -165,7 +162,6 @@ const Courses = () => {
       category: "dermatology",
       duration: "12 Months",
       seats: 15,
-      //s: "₹1,50,000",
       description: "In-depth study of Ayurvedic approaches to dermatological conditions, traditional skin care therapies, and integration with modern dermatological practices.",
       eligibility: "BAMS/MBBS",
       schedule: "Full-time Program with Dermatology Clinic Rotations",
@@ -201,7 +197,6 @@ const Courses = () => {
       category: "surgery",
       duration: "6 Months",
       seats: 10,
-      //s: "₹1,00,000",
       description: "Specialized fellowship in traditional Ayurvedic Kharsutra (medicated thread) therapy for ano-rectal disorders and minimally invasive surgical procedures.",
       eligibility: "BAMS/MS(Ayurveda)",
       schedule: "Full-time Intensive Program with Surgical Training",
@@ -232,8 +227,9 @@ const Courses = () => {
     }
   ];
 
+  // Updated categories with "All Fellowship Programs"
   const categories = [
-    { id: 'all', name: 'All Programs' },
+    { id: 'all', name: 'All Fellowship Programs' },
     { id: 'pediatric', name: 'Child Health' },
     { id: 'general', name: 'General Medicine' },
     { id: 'womens', name: 'Women\'s Health' },
@@ -241,12 +237,16 @@ const Courses = () => {
     { id: 'surgery', name: 'Surgical' }
   ];
 
-  // Filter programs based on category and search query
+  // Filter programs based on category and search query - improved filtering
   const filteredPrograms = fellowshipPrograms.filter(program => {
     const matchesCategory = selectedCategory === 'all' || program.category === selectedCategory;
-    const matchesSearch = program.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          program.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          program.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const searchLower = searchQuery.toLowerCase().trim();
+    const matchesSearch = searchQuery === '' || 
+                          program.title.toLowerCase().includes(searchLower) || 
+                          program.code.toLowerCase().includes(searchLower) ||
+                          program.description.toLowerCase().includes(searchLower) ||
+                          program.highlights.some(highlight => highlight.toLowerCase().includes(searchLower)) ||
+                          program.eligibility.toLowerCase().includes(searchLower);
     return matchesCategory && matchesSearch;
   });
 
@@ -323,6 +323,27 @@ const Courses = () => {
           overflow-y: auto;
           position: relative;
         }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+          .mobile-responsive-padding {
+            padding: 1rem;
+          }
+          
+          .mobile-responsive-text {
+            font-size: 1.5rem;
+          }
+          
+          .mobile-responsive-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .tablet-responsive-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
       `}</style>
 
       {/* Header Section */}
@@ -333,7 +354,7 @@ const Courses = () => {
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
         </div>
-        <div className="container mx-auto px-6 md:px-8 lg:px-12 py-20 md:py-24 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 md:py-24 relative z-10">
           <motion.div 
             className="text-center max-w-4xl mx-auto"
             initial="hidden"
@@ -341,15 +362,15 @@ const Courses = () => {
             variants={fadeInUp}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
               Fellowship
               <span style={{ color: govColors.primary.orange }}> Programs</span>
             </h1>
             <div 
-              className="w-32 h-1 mx-auto mb-8"
+              className="w-24 sm:w-32 h-1 mx-auto mb-6 sm:mb-8"
               style={{ backgroundColor: govColors.primary.orange }}
             ></div>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed opacity-95">
+            <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed opacity-95 px-4">
               Advance your medical career with our specialized fellowship programs 
               designed for practicing healthcare professionals.
             </p>
@@ -359,21 +380,21 @@ const Courses = () => {
 
       {/* Filter and Search Section */}
       <section 
-        className="py-12 md:py-16 border-b-2"
+        className="py-8 sm:py-12 md:py-16 border-b-2"
         style={{ 
           backgroundColor: govColors.primary.white,
           borderBottomColor: govColors.border.light
         }}
       >
-        <div className="container mx-auto px-6 md:px-8 lg:px-12">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="max-w-5xl mx-auto">
             <h2 
-              className="text-3xl md:text-4xl font-bold mb-8 text-center"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center"
               style={{ color: govColors.primary.blue }}
             >
               Find Your Specialization
             </h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <label 
                   className="block text-sm font-medium mb-3 text-center"
@@ -383,7 +404,7 @@ const Courses = () => {
                   Filter by Category
                 </label>
                 <select 
-                  className="w-full p-4 border-2 rounded-lg focus:outline-none transition-all duration-300 text-center"
+                  className="w-full p-3 sm:p-4 border-2 rounded-lg focus:outline-none transition-all duration-300 text-center"
                   style={{ 
                     borderColor: govColors.border.medium,
                     color: govColors.text.primary
@@ -415,7 +436,7 @@ const Courses = () => {
                 <input
                   type="text"
                   placeholder="Search by title, code, or description..."
-                  className="w-full p-4 border-2 rounded-lg focus:outline-none transition-all duration-300 text-center"
+                  className="w-full p-3 sm:p-4 border-2 rounded-lg focus:outline-none transition-all duration-300 text-center"
                   style={{ 
                     borderColor: govColors.border.medium,
                     color: govColors.text.primary
@@ -440,31 +461,31 @@ const Courses = () => {
       <div className="section-divider"></div>
 
       {/* Programs Section */}
-      <section className="py-16 md:py-20 lg:py-24">
-        <div className="container mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-12">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 
-              className="text-3xl md:text-4xl font-bold mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4"
               style={{ color: govColors.primary.blue }}
             >
               {filteredPrograms.length} {filteredPrograms.length === 1 ? 'Program' : 'Programs'} Available
             </h2>
             <div 
-              className="w-24 h-1 mx-auto"
+              className="w-20 sm:w-24 h-1 mx-auto"
               style={{ backgroundColor: govColors.primary.orange }}
             ></div>
           </div>
           
           {filteredPrograms.length === 0 ? (
             <div 
-              className="rounded-lg shadow-lg p-12 text-center max-w-2xl mx-auto border-2"
+              className="rounded-lg shadow-lg p-8 sm:p-12 text-center max-w-2xl mx-auto border-2"
               style={{ 
                 backgroundColor: govColors.primary.white,
                 borderColor: govColors.border.light
               }}
             >
               <p 
-                className="text-xl"
+                className="text-lg sm:text-xl"
                 style={{ color: govColors.text.secondary }}
               >
                 No fellowship programs match your criteria. Please try a different search or filter.
@@ -472,7 +493,7 @@ const Courses = () => {
             </div>
           ) : (
             <motion.div 
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+              className="grid mobile-responsive-grid tablet-responsive-grid lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto"
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -486,39 +507,39 @@ const Courses = () => {
                   variants={fadeInUp}
                 >
                   <div 
-                    className="py-4 px-6 text-white"
+                    className="py-3 sm:py-4 px-4 sm:px-6 text-white"
                     style={{ backgroundColor: program.color }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-bold text-lg">{program.code}</span>
-                      <span className="text-sm px-3 py-1 rounded-full bg-white/20">
+                      <span className="font-bold text-base sm:text-lg">{program.code}</span>
+                      <span className="text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full bg-white/20">
                         {program.duration}
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <program.icon className="text-2xl mr-3" />
-                      <span className="text-sm opacity-90">Fellowship Program</span>
+                      <program.icon className="text-xl sm:text-2xl mr-2 sm:mr-3" />
+                      <span className="text-xs sm:text-sm opacity-90">Fellowship Program</span>
                     </div>
                   </div>
                   
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     <h3 
-                      className="text-xl font-semibold mb-4 text-center leading-tight"
+                      className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-center leading-tight"
                       style={{ color: govColors.text.primary }}
                     >
                       {program.title}
                     </h3>
                     <p 
-                      className="mb-6 leading-relaxed text-center text-sm"
+                      className="mb-4 sm:mb-6 leading-relaxed text-center text-sm"
                       style={{ color: govColors.text.secondary }}
                     >
                       {program.description.substring(0, 120)}...
                     </p>
                     
-                    <div className="space-y-3 mb-6 text-sm">
+                    <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 text-xs sm:text-sm">
                       <div className="flex justify-between items-center">
                         <span className="flex items-center">
-                          <FaUsers className="w-4 h-4 mr-2" style={{ color: program.color }} />
+                          <FaUsers className="w-3 h-3 sm:w-4 sm:h-4 mr-2" style={{ color: program.color }} />
                           <span style={{ color: govColors.text.secondary }}>Seats:</span>
                         </span>
                         <span style={{ color: govColors.text.primary }} className="font-semibold">
@@ -526,14 +547,8 @@ const Courses = () => {
                         </span>
                       </div>
                       <div className="flex justify-between items-center">
-                       
-                        <span style={{ color: program.color }} className="font-bold">
-                          {program.fees}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center">
                         <span className="flex items-center">
-                          <FaGraduationCap className="w-4 h-4 mr-2" style={{ color: program.color }} />
+                          <FaGraduationCap className="w-3 h-3 sm:w-4 sm:h-4 mr-2" style={{ color: program.color }} />
                           <span style={{ color: govColors.text.secondary }}>Eligibility:</span>
                         </span>
                         <span style={{ color: govColors.text.primary }} className="font-semibold text-xs">
@@ -542,9 +557,9 @@ const Courses = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <button 
-                        className="w-full py-3 rounded-lg font-semibold transition-all duration-300"
+                        className="w-full py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base"
                         style={{ 
                           backgroundColor: program.color,
                           color: govColors.primary.white
@@ -561,9 +576,9 @@ const Courses = () => {
                       >
                         View Details
                       </button>
-                      <Link to="/admissions">
+                      <Link to="/contact">
                         <button 
-                          className="w-full py-3 rounded-lg font-semibold transition-all duration-300 border-2"
+                          className="w-full py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300 border-2 text-sm sm:text-base"
                           style={{ 
                             backgroundColor: 'transparent',
                             color: program.color,
@@ -594,41 +609,41 @@ const Courses = () => {
 
       {/* Program Information */}
       <section 
-        className="py-16 md:py-20 lg:py-24"
+        className="py-12 sm:py-16 md:py-20 lg:py-24"
         style={{ backgroundColor: govColors.background.secondary }}
       >
-        <div className="container mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-16">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="text-center mb-12 sm:mb-16">
             <h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6"
               style={{ color: govColors.primary.blue }}
             >
               Program Information
             </h2>
             <div 
-              className="w-24 h-1 mx-auto mb-8"
+              className="w-20 sm:w-24 h-1 mx-auto mb-6 sm:mb-8"
               style={{ backgroundColor: govColors.primary.orange }}
             ></div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             <motion.div 
-              className="bg-white rounded-lg shadow-lg p-8 text-center card-hover border-t-4"
+              className="bg-white rounded-lg shadow-lg p-6 sm:p-8 text-center card-hover border-t-4"
               style={{ borderTopColor: govColors.primary.blue }}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <FaClock 
-                className="text-4xl mx-auto mb-4" 
+                className="text-3xl sm:text-4xl mx-auto mb-3 sm:mb-4" 
                 style={{ color: govColors.primary.blue }}
               />
               <h3 
-                className="text-xl font-semibold mb-4"
+                className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4"
                 style={{ color: govColors.text.primary }}
               >
                 Program Duration
               </h3>
               <p 
-                className="leading-relaxed"
+                className="leading-relaxed text-sm sm:text-base"
                 style={{ color: govColors.text.secondary }}
               >
                 Fellowship programs range from 6 to 12 months, providing intensive training 
@@ -637,23 +652,23 @@ const Courses = () => {
             </motion.div>
             
             <motion.div 
-              className="bg-white rounded-lg shadow-lg p-8 text-center card-hover border-t-4"
+              className="bg-white rounded-lg shadow-lg p-6 sm:p-8 text-center card-hover border-t-4"
               style={{ borderTopColor: govColors.primary.orange }}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <FaStethoscope 
-                className="text-4xl mx-auto mb-4" 
+                className="text-3xl sm:text-4xl mx-auto mb-3 sm:mb-4" 
                 style={{ color: govColors.primary.orange }}
               />
               <h3 
-                className="text-xl font-semibold mb-4"
+                className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4"
                 style={{ color: govColors.text.primary }}
               >
                 Clinical Training
               </h3>
               <p 
-                className="leading-relaxed"
+                className="leading-relaxed text-sm sm:text-base"
                 style={{ color: govColors.text.secondary }}
               >
                 All programs include extensive clinical rotations in our network of 50+ partner 
@@ -662,23 +677,23 @@ const Courses = () => {
             </motion.div>
             
             <motion.div 
-              className="bg-white rounded-lg shadow-lg p-8 text-center card-hover border-t-4"
+              className="bg-white rounded-lg shadow-lg p-6 sm:p-8 text-center card-hover border-t-4"
               style={{ borderTopColor: govColors.primary.blue }}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <FaAward 
-                className="text-4xl mx-auto mb-4" 
+                className="text-3xl sm:text-4xl mx-auto mb-3 sm:mb-4" 
                 style={{ color: govColors.primary.blue }}
               />
               <h3 
-                className="text-xl font-semibold mb-4"
+                className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4"
                 style={{ color: govColors.text.primary }}
               >
                 Certification
               </h3>
               <p 
-                className="leading-relaxed"
+                className="leading-relaxed text-sm sm:text-base"
                 style={{ color: govColors.text.secondary }}
               >
                 Graduates receive nationally recognized fellowship certificates, enhancing 
@@ -691,10 +706,10 @@ const Courses = () => {
 
       {/* CTA Section */}
       <section 
-        className="text-white py-16 md:py-20 lg:py-24"
+        className="text-white py-12 sm:py-16 md:py-20 lg:py-24"
         style={{ backgroundColor: govColors.primary.blue }}
       >
-        <div className="container mx-auto px-6 md:px-8 lg:px-12 text-center">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 text-center">
           <motion.div 
             className="max-w-4xl mx-auto"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -702,25 +717,25 @@ const Courses = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
               Ready to Specialize Your Medical Career?
             </h2>
             <div 
-              className="w-24 h-1 mx-auto mb-8"
+              className="w-20 sm:w-24 h-1 mx-auto mb-6 sm:mb-8"
               style={{ backgroundColor: govColors.primary.orange }}
             ></div>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed opacity-95">
+            <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed opacity-95 px-4">
               Join our prestigious fellowship programs and advance your expertise with 
               industry-recognized specialization training.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/admissions">
-                <button className="px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition-all duration-300 transform hover:scale-105 gov-button">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
+              <Link to="/contact">
+                <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg shadow-lg transition-all duration-300 transform hover:scale-105 gov-button">
                   Apply for Fellowship
                 </button>
               </Link>
               <Link to="/contact">
-                <button className="px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-900">
+                <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-900">
                   Contact Admissions
                 </button>
               </Link>
@@ -731,10 +746,10 @@ const Courses = () => {
       
       {/* Inquiry Form Section */}
       <div 
-        className="py-16 md:py-20"
+        className="py-12 sm:py-16 md:py-20"
         style={{ backgroundColor: govColors.background.secondary }}
       >
-        <div className="container mx-auto px-6 md:px-8 lg:px-12">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <InquiryForm />
         </div>
       </div>
@@ -744,32 +759,31 @@ const Courses = () => {
         <div className="modal-overlay" onClick={closeProgramModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div 
-              className="p-6 text-white relative"
+              className="p-4 sm:p-6 text-white relative"
               style={{ backgroundColor: selectedProgram.color }}
             >
               <button 
-                className="absolute top-4 right-4 text-2xl hover:opacity-75 transition-opacity duration-300"
+                className="absolute top-3 sm:top-4 right-3 sm:right-4 text-2xl hover:opacity-75 transition-opacity duration-300"
                 onClick={closeProgramModal}
               >
                 ×
               </button>
-              <div className="flex items-center mb-4">
-                <selectedProgram.icon className="text-4xl mr-4" />
+              <div className="flex items-center mb-3 sm:mb-4">
+                <selectedProgram.icon className="text-3xl sm:text-4xl mr-3 sm:mr-4" />
                 <div>
-                  <h2 className="text-2xl font-bold">{selectedProgram.title}</h2>
-                  <p className="opacity-90">Code: {selectedProgram.code}</p>
+                  <h2 className="text-xl sm:text-2xl font-bold">{selectedProgram.title}</h2>
+                  <p className="opacity-90 text-sm sm:text-base">Code: {selectedProgram.code}</p>
                 </div>
               </div>
             </div>
             
-            <div className="p-6 max-h-96 overflow-y-auto">
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="p-4 sm:p-6 max-h-96 overflow-y-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                 <div>
                   <h4 className="font-bold mb-2" style={{ color: govColors.primary.blue }}>Program Details</h4>
                   <div className="space-y-2 text-sm">
                     <p><span className="font-semibold">Duration:</span> {selectedProgram.duration}</p>
                     <p><span className="font-semibold">Seats Available:</span> {selectedProgram.seats}</p>
-                    <p><span className="font-semibold">Program Fee:</span> {selectedProgram.fees}</p>
                     <p><span className="font-semibold">Eligibility:</span> {selectedProgram.eligibility}</p>
                   </div>
                 </div>
@@ -779,14 +793,14 @@ const Courses = () => {
                 </div>
               </div>
               
-              <div className="mb-6">
+              <div className="mb-4 sm:mb-6">
                 <h4 className="font-bold mb-2" style={{ color: govColors.primary.blue }}>Program Description</h4>
                 <p className="text-sm leading-relaxed" style={{ color: govColors.text.secondary }}>
                   {selectedProgram.description}
                 </p>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                 <div>
                   <h4 className="font-bold mb-2" style={{ color: govColors.primary.blue }}>Key Highlights</h4>
                   <ul className="space-y-1 text-sm">
@@ -811,7 +825,7 @@ const Courses = () => {
                 </div>
               </div>
               
-              <div className="mb-6">
+              <div className="mb-4 sm:mb-6">
                 <h4 className="font-bold mb-2" style={{ color: govColors.primary.blue }}>Career Prospects</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedProgram.careerProspects.map((career, index) => (
@@ -829,10 +843,10 @@ const Courses = () => {
                 </div>
               </div>
               
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link to="/contact" className="flex-1">
                   <button 
-                    className="w-full py-3 rounded-lg font-semibold transition-all duration-300"
+                    className="w-full py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300"
                     style={{ 
                       backgroundColor: selectedProgram.color,
                       color: govColors.primary.white
@@ -842,7 +856,7 @@ const Courses = () => {
                   </button>
                 </Link>
                 <button 
-                  className="flex-1 py-3 rounded-lg font-semibold transition-all duration-300 border-2"
+                  className="flex-1 py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300 border-2"
                   style={{ 
                     backgroundColor: 'transparent',
                     color: selectedProgram.color,

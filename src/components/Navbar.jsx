@@ -70,6 +70,8 @@ const Navbar = () => {
               </Link>
             </div>
 
+            <Link to="/" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">HOME</Link>
+
             <Link to="/about" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium">ABOUT</Link>
 
             {/* Courses Dropdown */}
@@ -105,14 +107,6 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-
-            {/* Blog Link */}
-            {/* <Link
-              to="/blog"
-              className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium"
-            >
-              BLOG
-            </Link> */}
 
             <div className="relative group">
               <div className="flex items-center">
@@ -179,6 +173,8 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-2">
             <div className="flex flex-col space-y-2 px-2 pt-2 pb-3">
+              <Link to="/" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium" onClick={handleDropdownItemClick}>HOME</Link>
+
               <Link to="/about" className="px-3 py-2 text-gray-800 hover:text-blue-600 font-medium" onClick={handleDropdownItemClick}>ABOUT</Link>
 
               {/* Mobile Courses Dropdown */}

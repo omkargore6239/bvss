@@ -227,7 +227,13 @@ const Muhs = () => {
         .section-divider {
           height: 4px;
           background: linear-gradient(to right, ${govColors.primary.blue}, ${govColors.primary.orange}, ${govColors.primary.blue});
-          margin: 3rem 0;
+          margin: 2rem 0;
+        }
+
+        @media (min-width: 768px) {
+          .section-divider {
+            margin: 3rem 0;
+          }
         }
 
         .gov-button {
@@ -266,6 +272,7 @@ const Muhs = () => {
 
         .tab-button {
           transition: all 0.3s ease;
+          position: relative;
         }
 
         .tab-button.active {
@@ -280,6 +287,121 @@ const Muhs = () => {
         .tab-button:not(.active):hover {
           color: ${govColors.text.primary};
         }
+
+        /* Mobile responsive styles */
+        @media (max-width: 640px) {
+          .mobile-stack {
+            flex-direction: column !important;
+            gap: 0.5rem !important;
+          }
+          
+          .mobile-full-width {
+            width: 100% !important;
+          }
+          
+          .mobile-text-sm {
+            font-size: 0.875rem !important;
+          }
+          
+          .mobile-p-4 {
+            padding: 1rem !important;
+          }
+          
+          .mobile-mb-4 {
+            margin-bottom: 1rem !important;
+          }
+          
+          .mobile-text-center {
+            text-align: center !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .tablet-responsive {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+          }
+          
+          .tablet-text-lg {
+            font-size: 1.125rem !important;
+          }
+        }
+
+        /* Input focus styles */
+        .form-input:focus {
+          border-color: ${govColors.primary.blue} !important;
+          box-shadow: 0 0 0 3px ${govColors.background.accent} !important;
+          outline: none !important;
+        }
+
+        .form-select:focus {
+          border-color: ${govColors.primary.orange} !important;
+          box-shadow: 0 0 0 3px ${govColors.background.orange} !important;
+          outline: none !important;
+        }
+
+        /* Responsive button styles */
+        @media (max-width: 640px) {
+          .responsive-btn {
+            padding: 0.5rem 0.75rem !important;
+            font-size: 0.75rem !important;
+          }
+          
+          .responsive-btn-lg {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.875rem !important;
+          }
+        }
+
+        /* Responsive grid adjustments */
+        @media (max-width: 640px) {
+          .mobile-grid-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+          }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .tablet-grid-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          }
+        }
+
+        /* Card responsive adjustments */
+        @media (max-width: 640px) {
+          .card-responsive {
+            margin-bottom: 1rem !important;
+            padding: 1rem !important;
+          }
+          
+          .card-content-mobile {
+            margin-right: 0 !important;
+            margin-bottom: 1rem !important;
+          }
+          
+          .card-actions-mobile {
+            margin-left: 0 !important;
+            flex-direction: row !important;
+            gap: 0.5rem !important;
+            justify-content: space-between !important;
+          }
+        }
+
+        /* Tab responsive styling */
+        @media (max-width: 640px) {
+          .tab-container {
+            overflow-x: auto !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+          }
+          
+          .tab-container::-webkit-scrollbar {
+            display: none !important;
+          }
+          
+          .tab-flex {
+            min-width: max-content !important;
+          }
+        }
       `}</style>
 
       {/* Header */}
@@ -290,38 +412,38 @@ const Muhs = () => {
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
         </div>
-        <div className="container mx-auto max-w-6xl px-6 py-16 text-center relative z-10">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16 text-center relative z-10">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex items-center justify-center mb-6 mx-auto">
+            <div className="flex flex-col sm:flex-row items-center justify-center mb-4 sm:mb-6 mx-auto">
               <FaBalanceScale 
-                className="h-12 w-12 mr-4" 
+                className="h-8 w-8 sm:h-12 sm:w-12 mb-2 sm:mb-0 sm:mr-4" 
                 style={{ color: govColors.primary.orange }}
               />
-              <h1 className="text-4xl md:text-5xl font-bold">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center">
                 Government
                 <span style={{ color: govColors.primary.orange }}> Guidelines</span>
               </h1>
             </div>
             <div 
-              className="w-32 h-1 mx-auto mb-8"
+              className="w-24 sm:w-32 h-1 mx-auto mb-6 sm:mb-8"
               style={{ backgroundColor: govColors.primary.orange }}
             ></div>
-            <p className="text-xl leading-relaxed opacity-95 mb-8 max-w-4xl mx-auto">
+            <p className="text-base sm:text-xl leading-relaxed opacity-95 mb-6 sm:mb-8 max-w-4xl mx-auto px-2">
               Bharat Vikas Shikshan Sanstha - Official Guidelines and Circulars for Fellowship Training Programs
             </p>
             <div 
-              className="rounded-lg p-6 mx-auto max-w-4xl border-2"
+              className="rounded-lg p-4 sm:p-6 mx-auto max-w-4xl border-2"
               style={{ 
                 backgroundColor: `${govColors.primary.white}10`,
                 borderColor: govColors.primary.orange
               }}
             >
-              <p className="opacity-90">
+              <p className="opacity-90 text-sm sm:text-base leading-relaxed">
                 Access the latest academic guidelines, administrative circulars, and regulatory documents 
                 for fellowship training programs in Child Health Care Management, General Medicine, 
                 Women's Health, Ayurvedic Dermatology, and Kharsutra Therapy.
@@ -333,31 +455,31 @@ const Muhs = () => {
 
       {/* Navigation Tabs */}
       <div 
-        className="shadow-sm border-b sticky top-0 z-20"
+        className="shadow-sm border-b sticky top-0 z-20 tab-container"
         style={{ backgroundColor: govColors.primary.white }}
       >
-        <div className="container mx-auto max-w-6xl px-6">
-          <div className="flex space-x-8">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="flex space-x-4 sm:space-x-8 tab-flex">
             <button
               onClick={() => setActiveTab('guidelines')}
-              className={`py-4 px-6 border-b-2 font-semibold transition-colors tab-button ${
+              className={`py-3 sm:py-4 px-4 sm:px-6 border-b-2 font-semibold transition-colors tab-button ${
                 activeTab === 'guidelines' ? 'active' : ''
               }`}
             >
               <div className="flex items-center">
-                <FaBookOpen className="h-5 w-5 mr-2" />
-                Guidelines
+                <FaBookOpen className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
+                <span className="text-sm sm:text-base">Guidelines</span>
               </div>
             </button>
             <button
               onClick={() => setActiveTab('circulars')}
-              className={`py-4 px-6 border-b-2 font-semibold transition-colors tab-button ${
+              className={`py-3 sm:py-4 px-4 sm:px-6 border-b-2 font-semibold transition-colors tab-button ${
                 activeTab === 'circulars' ? 'active' : ''
               }`}
             >
               <div className="flex items-center">
-                <FaFileAlt className="h-5 w-5 mr-2" />
-                Circulars
+                <FaFileAlt className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
+                <span className="text-sm sm:text-base">Circulars</span>
               </div>
             </button>
           </div>
@@ -369,12 +491,12 @@ const Muhs = () => {
         className="border-b"
         style={{ backgroundColor: govColors.primary.white }}
       >
-        <div className="container mx-auto max-w-6xl px-6 py-6">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 py-4 sm:py-6">
+          <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
             {/* Search Bar */}
-            <div className="relative flex-1 max-w-md mx-auto md:mx-0 w-full">
+            <div className="relative flex-1 max-w-full lg:max-w-md">
               <FaSearch 
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5" 
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5" 
                 style={{ color: govColors.text.secondary }}
               />
               <input
@@ -382,44 +504,28 @@ const Muhs = () => {
                 placeholder={`Search ${activeTab}...`}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border-2 rounded-lg focus:outline-none transition-all duration-300"
+                className="w-full pl-10 sm:pl-12 pr-4 py-2 sm:py-3 border-2 rounded-lg transition-all duration-300 form-input text-sm sm:text-base"
                 style={{ 
                   borderColor: govColors.border.medium,
                   color: govColors.text.primary
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = govColors.primary.blue;
-                  e.target.style.boxShadow = `0 0 0 3px ${govColors.background.accent}`;
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = govColors.border.medium;
-                  e.target.style.boxShadow = 'none';
                 }}
               />
             </div>
 
             {/* Category Filter */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <FaFilter 
-                className="h-5 w-5" 
+                className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" 
                 style={{ color: govColors.text.secondary }}
               />
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-3 border-2 rounded-lg focus:outline-none transition-all duration-300"
+                className="px-3 sm:px-4 py-2 sm:py-3 border-2 rounded-lg transition-all duration-300 form-select flex-1 lg:flex-none text-sm sm:text-base"
                 style={{ 
                   borderColor: govColors.border.medium,
                   backgroundColor: govColors.primary.white,
                   color: govColors.text.primary
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = govColors.primary.orange;
-                  e.target.style.boxShadow = `0 0 0 3px ${govColors.background.orange}`;
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = govColors.border.medium;
-                  e.target.style.boxShadow = 'none';
                 }}
               >
                 {categories[activeTab].map(category => (
@@ -432,23 +538,23 @@ const Muhs = () => {
       </div>
 
       {/* Content Section */}
-      <div className="container mx-auto max-w-6xl px-6 py-12">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-12">
         {activeTab === 'guidelines' && (
           <motion.div
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0">
               <h2 
-                className="text-3xl font-bold"
+                className="text-2xl sm:text-3xl font-bold"
                 style={{ color: govColors.primary.blue }}
               >
                 Fellowship Training Guidelines ({filteredGuidelines.length})
               </h2>
               <span 
-                className="text-sm"
+                className="text-xs sm:text-sm"
                 style={{ color: govColors.text.secondary }}
               >
                 Last updated: March 15, 2024
@@ -456,46 +562,46 @@ const Muhs = () => {
             </div>
 
             {filteredGuidelines.length === 0 ? (
-              <div className="text-center py-12">
+              <div className="text-center py-8 sm:py-12">
                 <FaBookOpen 
-                  className="h-16 w-16 mx-auto mb-4" 
+                  className="h-12 w-12 sm:h-16 sm:w-16 mx-auto mb-4" 
                   style={{ color: govColors.text.secondary }}
                 />
                 <p 
-                  className="text-lg"
+                  className="text-base sm:text-lg"
                   style={{ color: govColors.text.secondary }}
                 >
                   No guidelines found matching your criteria.
                 </p>
               </div>
             ) : (
-              <div className="grid gap-6">
+              <div className="grid gap-4 sm:gap-6">
                 {filteredGuidelines.map((guideline) => (
                   <motion.div 
                     key={guideline.id} 
-                    className="bg-white rounded-lg shadow-md card-hover border-l-4"
+                    className="bg-white rounded-lg shadow-md card-hover border-l-4 card-responsive"
                     style={{ borderLeftColor: govColors.primary.orange }}
                     variants={fadeInUp}
                   >
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex-1">
-                          <div className="flex items-center mb-2">
+                    <div className="p-4 sm:p-6">
+                      <div className="flex flex-col lg:flex-row lg:items-start justify-between">
+                        <div className="flex-1 card-content-mobile">
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-2">
                             <h3 
-                              className="text-xl font-semibold mr-3"
+                              className="text-lg sm:text-xl font-semibold mr-0 sm:mr-3 mb-2 sm:mb-0"
                               style={{ color: govColors.text.primary }}
                             >
                               {guideline.title}
                             </h3>
                             {guideline.isNew && (
-                              <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                              <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium self-start sm:self-auto">
                                 New
                               </span>
                             )}
                           </div>
-                          <div className="flex items-center text-sm space-x-4 mb-3" style={{ color: govColors.text.secondary }}>
+                          <div className="flex flex-wrap items-center text-xs sm:text-sm gap-2 sm:gap-4 mb-3" style={{ color: govColors.text.secondary }}>
                             <div className="flex items-center">
-                              <FaCalendarAlt className="h-4 w-4 mr-1" />
+                              <FaCalendarAlt className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                               {guideline.date}
                             </div>
                             <span 
@@ -507,16 +613,16 @@ const Muhs = () => {
                             >
                               {guideline.category}
                             </span>
-                            <span style={{ color: govColors.text.secondary }}>•</span>
-                            <span>{guideline.type} • {guideline.size}</span>
+                            <span className="hidden sm:inline" style={{ color: govColors.text.secondary }}>•</span>
+                            <span className="text-xs">{guideline.type} • {guideline.size}</span>
                           </div>
                           <p 
-                            className="mb-4 leading-relaxed"
+                            className="mb-4 leading-relaxed text-sm sm:text-base"
                             style={{ color: govColors.text.secondary }}
                           >
                             {guideline.description}
                           </p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1 sm:gap-2">
                             {guideline.tags.map((tag, index) => (
                               <span 
                                 key={index} 
@@ -531,14 +637,16 @@ const Muhs = () => {
                             ))}
                           </div>
                         </div>
-                        <div className="ml-4 flex flex-col space-y-2">
-                          <button className="flex items-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 gov-button">
-                            <FaDownload className="h-4 w-4 mr-2" />
-                            Download
+                        <div className="mt-4 lg:mt-0 lg:ml-4 flex flex-row lg:flex-col gap-2 card-actions-mobile">
+                          <button className="flex items-center justify-center px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-300 gov-button responsive-btn flex-1 lg:flex-none">
+                            <FaDownload className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                            <span className="hidden sm:inline">Download</span>
+                            <span className="sm:hidden">DL</span>
                           </button>
-                          <button className="flex items-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 gov-button-secondary">
-                            <FaExternalLinkAlt className="h-4 w-4 mr-2" />
-                            View
+                          <button className="flex items-center justify-center px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-300 gov-button-secondary responsive-btn flex-1 lg:flex-none">
+                            <FaExternalLinkAlt className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                            <span className="hidden sm:inline">View</span>
+                            <span className="sm:hidden">View</span>
                           </button>
                         </div>
                       </div>
@@ -552,20 +660,20 @@ const Muhs = () => {
 
         {activeTab === 'circulars' && (
           <motion.div
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0">
               <h2 
-                className="text-3xl font-bold"
+                className="text-2xl sm:text-3xl font-bold"
                 style={{ color: govColors.primary.blue }}
               >
                 Official Circulars ({filteredCirculars.length})
               </h2>
               <span 
-                className="text-sm"
+                className="text-xs sm:text-sm"
                 style={{ color: govColors.text.secondary }}
               >
                 Last updated: March 20, 2024
@@ -573,47 +681,47 @@ const Muhs = () => {
             </div>
 
             {filteredCirculars.length === 0 ? (
-              <div className="text-center py-12">
+              <div className="text-center py-8 sm:py-12">
                 <FaFileAlt 
-                  className="h-16 w-16 mx-auto mb-4" 
+                  className="h-12 w-12 sm:h-16 sm:w-16 mx-auto mb-4" 
                   style={{ color: govColors.text.secondary }}
                 />
                 <p 
-                  className="text-lg"
+                  className="text-base sm:text-lg"
                   style={{ color: govColors.text.secondary }}
                 >
                   No circulars found matching your criteria.
                 </p>
               </div>
             ) : (
-              <div className="grid gap-6">
+              <div className="grid gap-4 sm:gap-6">
                 {filteredCirculars.map((circular) => (
                   <motion.div 
                     key={circular.id} 
-                    className="bg-white rounded-lg shadow-md card-hover border-l-4"
+                    className="bg-white rounded-lg shadow-md card-hover border-l-4 card-responsive"
                     style={{ borderLeftColor: govColors.primary.blue }}
                     variants={fadeInUp}
                   >
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex-1">
-                          <div className="flex items-center mb-2">
+                    <div className="p-4 sm:p-6">
+                      <div className="flex flex-col lg:flex-row lg:items-start justify-between">
+                        <div className="flex-1 card-content-mobile">
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-2">
                             <h3 
-                              className="text-xl font-semibold mr-3"
+                              className="text-lg sm:text-xl font-semibold mr-0 sm:mr-3 mb-2 sm:mb-0"
                               style={{ color: govColors.text.primary }}
                             >
                               {circular.title}
                             </h3>
                             {circular.isUrgent && (
-                              <div className="flex items-center bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium">
+                              <div className="flex items-center bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium self-start sm:self-auto">
                                 <FaExclamationTriangle className="h-3 w-3 mr-1" />
                                 Urgent
                               </div>
                             )}
                           </div>
-                          <div className="flex items-center text-sm space-x-4 mb-3" style={{ color: govColors.text.secondary }}>
+                          <div className="flex flex-wrap items-center text-xs sm:text-sm gap-2 sm:gap-4 mb-3" style={{ color: govColors.text.secondary }}>
                             <div className="flex items-center">
-                              <FaCalendarAlt className="h-4 w-4 mr-1" />
+                              <FaCalendarAlt className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                               {circular.date}
                             </div>
                             <span 
@@ -630,7 +738,7 @@ const Muhs = () => {
                             </span>
                           </div>
                           <p 
-                            className="mb-4 leading-relaxed"
+                            className="mb-4 leading-relaxed text-sm sm:text-base"
                             style={{ color: govColors.text.secondary }}
                           >
                             {circular.description}
@@ -650,38 +758,38 @@ const Muhs = () => {
                                 }}
                               >
                                 {expandedItem === circular.id ? (
-                                  <FaChevronDown className="h-4 w-4 mr-1" />
+                                  <FaChevronDown className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                                 ) : (
-                                  <FaChevronRight className="h-4 w-4 mr-1" />
+                                  <FaChevronRight className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                                 )}
                                 Attachments ({circular.attachments.length})
                               </button>
 
                               {expandedItem === circular.id && (
-                                <div className="mt-2 pl-5 space-y-2">
+                                <div className="mt-2 pl-3 sm:pl-5 space-y-2">
                                   {circular.attachments.map((attachment, index) => (
                                     <div 
                                       key={index} 
-                                      className="flex items-center justify-between p-3 rounded border"
+                                      className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded border gap-2 sm:gap-0"
                                       style={{ 
                                         backgroundColor: govColors.background.secondary,
                                         borderColor: govColors.border.light
                                       }}
                                     >
-                                      <div className="flex items-center">
+                                      <div className="flex items-center flex-1">
                                         <FaFileAlt 
-                                          className="h-4 w-4 mr-2" 
+                                          className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" 
                                           style={{ color: govColors.text.secondary }}
                                         />
                                         <span 
-                                          className="text-sm"
+                                          className="text-xs sm:text-sm break-all"
                                           style={{ color: govColors.text.secondary }}
                                         >
                                           {attachment}
                                         </span>
                                       </div>
                                       <button 
-                                        className="text-sm font-medium transition-colors duration-300"
+                                        className="text-xs sm:text-sm font-medium transition-colors duration-300 self-start sm:self-auto"
                                         style={{ color: govColors.primary.blue }}
                                         onMouseEnter={(e) => {
                                           e.target.style.color = govColors.primary.orange;
@@ -700,7 +808,7 @@ const Muhs = () => {
                           )}
 
                           <span 
-                            className="px-3 py-1 rounded-full text-sm"
+                            className="inline-block px-3 py-1 rounded-full text-xs sm:text-sm"
                             style={{ 
                               backgroundColor: govColors.background.accent,
                               color: govColors.primary.blue
@@ -709,14 +817,16 @@ const Muhs = () => {
                             {circular.category}
                           </span>
                         </div>
-                        <div className="ml-4 flex flex-col space-y-2">
-                          <button className="flex items-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 gov-button">
-                            <FaDownload className="h-4 w-4 mr-2" />
-                            Download
+                        <div className="mt-4 lg:mt-0 lg:ml-4 flex flex-row lg:flex-col gap-2 card-actions-mobile">
+                          <button className="flex items-center justify-center px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-300 gov-button responsive-btn flex-1 lg:flex-none">
+                            <FaDownload className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                            <span className="hidden sm:inline">Download</span>
+                            <span className="sm:hidden">DL</span>
                           </button>
-                          <button className="flex items-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 gov-button-secondary">
-                            <FaExternalLinkAlt className="h-4 w-4 mr-2" />
-                            View
+                          <button className="flex items-center justify-center px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-300 gov-button-secondary responsive-btn flex-1 lg:flex-none">
+                            <FaExternalLinkAlt className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                            <span className="hidden sm:inline">View</span>
+                            <span className="sm:hidden">View</span>
                           </button>
                         </div>
                       </div>
@@ -733,24 +843,24 @@ const Muhs = () => {
       <div className="section-divider"></div>
       
       <section 
-        className="py-16"
+        className="py-12 sm:py-16"
         style={{ backgroundColor: govColors.background.secondary }}
       >
-        <div className="container mx-auto max-w-6xl px-6">
-          <div className="text-center mb-12">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 
-              className="text-3xl font-bold mb-6"
+              className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6"
               style={{ color: govColors.primary.blue }}
             >
               Important Information
             </h2>
             <div 
-              className="w-24 h-1 mx-auto mb-8"
+              className="w-20 sm:w-24 h-1 mx-auto mb-6 sm:mb-8"
               style={{ backgroundColor: govColors.primary.orange }}
             ></div>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mobile-grid-1 tablet-grid-2">
             {[
               {
                 icon: FaGraduationCap,
@@ -779,7 +889,7 @@ const Muhs = () => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-lg p-6 text-center shadow-lg card-hover border-t-4"
+                className="bg-white rounded-lg p-4 sm:p-6 text-center shadow-lg card-hover border-t-4"
                 style={{ borderTopColor: item.color }}
                 variants={fadeInUp}
                 initial="hidden"
@@ -787,17 +897,17 @@ const Muhs = () => {
                 viewport={{ once: true }}
               >
                 <item.icon 
-                  className="text-4xl mx-auto mb-4" 
+                  className="text-3xl sm:text-4xl mx-auto mb-3 sm:mb-4" 
                   style={{ color: item.color }}
                 />
                 <h3 
-                  className="text-lg font-bold mb-3"
+                  className="text-base sm:text-lg font-bold mb-2 sm:mb-3"
                   style={{ color: govColors.text.primary }}
                 >
                   {item.title}
                 </h3>
                 <p 
-                  className="text-sm leading-relaxed"
+                  className="text-xs sm:text-sm leading-relaxed"
                   style={{ color: govColors.text.secondary }}
                 >
                   {item.description}
@@ -809,10 +919,10 @@ const Muhs = () => {
       </section>
 
       <div 
-        className="py-16"
+        className="py-12 sm:py-16"
         style={{ backgroundColor: govColors.background.primary }}
       >
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <InquiryForm />
         </div>
       </div>

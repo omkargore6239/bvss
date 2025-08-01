@@ -268,121 +268,94 @@ const About = () => {
 
       {/* Fellowship Programs Section */}
       <section className="py-16 md:py-20">
-        <div className="container mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-16">
-            <h2 
-              className="text-3xl md:text-4xl font-bold mb-6"
-              style={{ color: govColors.primary.blue }}
-            >
-              Our Fellowship Programs
-            </h2>
-            <div 
-              className="w-24 h-1 mx-auto mb-8"
-              style={{ backgroundColor: govColors.primary.orange }}
-            ></div>
-            <p 
-              className="text-lg max-w-3xl mx-auto"
-              style={{ color: govColors.text.secondary }}
-            >
-              Specialized training programs designed for practicing healthcare professionals 
-              seeking advanced expertise in specific medical domains.
-            </p>
-          </div>
-          
-          <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+  <div className="container mx-auto px-6 md:px-8 lg:px-12">
+    <div className="text-center mb-16">
+      <h2 
+        className="text-3xl md:text-4xl font-bold mb-6"
+        style={{ color: govColors.primary.blue }}
+      >
+        Our Fellowship Programs
+      </h2>
+      <div 
+        className="w-24 h-1 mx-auto mb-8"
+        style={{ backgroundColor: govColors.primary.orange }}
+      ></div>
+      <p 
+        className="text-lg max-w-3xl mx-auto"
+        style={{ color: govColors.text.secondary }}
+      >
+        Specialized training programs designed for practicing healthcare professionals 
+        seeking advanced expertise in specific medical domains.
+      </p>
+    </div>
+    
+    <motion.div 
+      className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      {[
+        {
+          icon: FaBaby,
+          title: "Fellowship in Child Health Care Management",
+          description: "Comprehensive training in pediatric healthcare management, child development assessment, vaccination protocols, and specialized pediatric care procedures.",
+          color: govColors.primary.blue
+        },
+        {
+          icon: FaHeartbeat,
+          title: "Fellowship in General Medicine & Health Care Management",
+          description: "Advanced training in general medicine practices, healthcare administration, patient management systems, and clinical decision-making.",
+          color: govColors.primary.orange
+        },
+        {
+          icon: FaVenusMars,
+          title: "Fellowship in Women & Maternal Health Care Management",
+          description: "Specialized program covering women's health, maternal care, gynecological practices, family planning, and reproductive health management.",
+          color: govColors.primary.blue
+        },
+        {
+          icon: FaSpa,
+          title: "Fellowship in Ayurvedic Dermatology",
+          description: "In-depth study of Ayurvedic approaches to dermatological conditions, skin care therapies, and traditional treatment modalities.",
+          color: govColors.primary.orange
+        },
+        {
+          icon: MdLocalHospital,
+          title: "Fellowship in Kharsutra Therapy",
+          description: "Specialized training in traditional Ayurvedic Kharsutra (medicated thread) therapy for ano-rectal disorders and minimally invasive procedures.",
+          color: govColors.primary.blue
+        }
+      ].map((program, index) => (
+        <motion.div 
+          key={index} 
+          className="bg-white rounded-lg shadow-lg p-6 card-hover border-t-4"
+          style={{ borderTopColor: program.color }}
+          variants={fadeInUp}
+        >
+          <program.icon 
+            className="text-4xl mb-4" 
+            style={{ color: program.color }}
+          />
+          <h3 
+            className="text-xl font-bold mb-4"
+            style={{ color: govColors.text.primary }}
           >
-            {[
-              {
-                icon: FaBaby,
-                title: "Fellowship in Child Health Care Management",
-                description: "Comprehensive training in pediatric healthcare management, child development assessment, vaccination protocols, and specialized pediatric care procedures.",
-                duration: "12 Months",
-                eligibility: "MBBS/BAMS/BDS/BHMS",
-                color: govColors.primary.blue
-              },
-              {
-                icon: FaHeartbeat,
-                title: "Fellowship in General Medicine & Health Care Management",
-                description: "Advanced training in general medicine practices, healthcare administration, patient management systems, and clinical decision-making.",
-                duration: "12 Months",
-                eligibility: "MBBS/BAMS/BDS/BHMS",
-                color: govColors.primary.orange
-              },
-              {
-                icon: FaVenusMars,
-                title: "Fellowship in Women & Maternal Health Care Management",
-                description: "Specialized program covering women's health, maternal care, gynecological practices, family planning, and reproductive health management.",
-                duration: "12 Months",
-                eligibility: "MBBS/BAMS/BDS/BHMS",
-                color: govColors.primary.blue
-              },
-              {
-                icon: FaSpa,
-                title: "Fellowship in Ayurvedic Dermatology",
-                description: "In-depth study of Ayurvedic approaches to dermatological conditions, skin care therapies, and traditional treatment modalities.",
-                duration: "12 Months",
-                eligibility: "BAMS/MBBS",
-                color: govColors.primary.orange
-              },
-              {
-                icon: MdLocalHospital,
-                title: "Fellowship in Kharsutra Therapy",
-                description: "Specialized training in traditional Ayurvedic Kharsutra (medicated thread) therapy for ano-rectal disorders and minimally invasive procedures.",
-                duration: "6 Months",
-                eligibility: "BAMS/MS(Ayur)",
-                color: govColors.primary.blue
-              }
-            ].map((program, index) => (
-              <motion.div 
-                key={index} 
-                className="bg-white rounded-lg shadow-lg p-6 card-hover border-t-4"
-                style={{ borderTopColor: program.color }}
-                variants={fadeInUp}
-              >
-                <program.icon 
-                  className="text-4xl mb-4" 
-                  style={{ color: program.color }}
-                />
-                <h3 
-                  className="text-xl font-bold mb-4"
-                  style={{ color: govColors.text.primary }}
-                >
-                  {program.title}
-                </h3>
-                <p 
-                  className="text-sm leading-relaxed mb-4"
-                  style={{ color: govColors.text.secondary }}
-                >
-                  {program.description}
-                </p>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold" style={{ color: govColors.text.secondary }}>Duration:</span>
-                    <span 
-                      className="text-xs font-bold px-2 py-1 rounded"
-                      style={{ 
-                        backgroundColor: program.color === govColors.primary.blue ? govColors.background.accent : govColors.background.orange,
-                        color: program.color
-                      }}
-                    >
-                      {program.duration}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold" style={{ color: govColors.text.secondary }}>Eligibility:</span>
-                    <span className="text-xs" style={{ color: govColors.text.primary }}>{program.eligibility}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+            {program.title}
+          </h3>
+          <p 
+            className="text-sm leading-relaxed"
+            style={{ color: govColors.text.secondary }}
+          >
+            {program.description}
+          </p>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</section>
+
 
       <div className="section-divider"></div>
 
