@@ -18,7 +18,7 @@ import PostGraduate from './subpages/courses/PostGraduate';
 import DiplomaPrograms from './subpages/courses/DiplomaPrograms';
 import CertificateCourses from './subpages/courses/CertificateCourses';
 // Import Document page
-import Document from './pages/Document';
+import Document from './pages/Inspection';
 
 const App = () => {
   return (

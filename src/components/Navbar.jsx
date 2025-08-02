@@ -122,7 +122,7 @@ const Navbar = () => {
                   </Link>
                   {/* --- New Document Link --- */}
                   <Link to="/document" className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600">
-                    DOCUMENT
+                    INSPECTION
                   </Link>
                 </div>
               </div>
@@ -235,7 +235,7 @@ const Navbar = () => {
                   <div className="pl-6 mt-1 space-y-1">
                     <Link to="/blog" className="block px-3 py-1 text-gray-800 hover:text-blue-600" onClick={handleDropdownItemClick}>BLOG</Link>
                     {/* --- New Document Link --- */}
-                    <Link to="/document" className="block px-3 py-1 text-gray-800 hover:text-blue-600" onClick={handleDropdownItemClick}>DOCUMENT</Link>
+                    <Link to="/document" className="block px-3 py-1 text-gray-800 hover:text-blue-600" onClick={handleDropdownItemClick}>INSPECTION</Link>
                   </div>
                 )}
               </div>
