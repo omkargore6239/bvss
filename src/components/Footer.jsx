@@ -261,19 +261,6 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          
-          <div className="text-center lg:text-right">
-            <p className="text-xs opacity-75 mb-1">Developed & Maintained By</p>
-            <a 
-              href="https://eptiq.in" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs md:text-sm font-semibold hover:underline transition-all duration-300"
-              style={{ color: govColors.primary.orange }}
-            >
-              Eptiq Technologies
-            </a>
-          </div>
         </div>
 
         {/* Government Website Style Disclaimer - Compact */}
